@@ -7,7 +7,8 @@ USE CyberGaming;
 GO
 
 -- Table for managing gaming PCs
-CREATE TABLE PCs (
+CREATE TABLE PCs
+(
     pc_id INT PRIMARY KEY IDENTITY(1,1),
     pc_name VARCHAR(50) NOT NULL,
     ip_address VARCHAR(15) NOT NULL,
@@ -18,7 +19,8 @@ CREATE TABLE PCs (
 GO
 
 -- Table for managing customers
-CREATE TABLE Customers (
+CREATE TABLE Customers
+(
     customer_id INT PRIMARY KEY IDENTITY(1,1),
     full_name VARCHAR(100) NOT NULL,
     username VARCHAR(50) NOT NULL UNIQUE,
@@ -31,7 +33,8 @@ CREATE TABLE Customers (
 GO
 
 -- Table for managing games
-CREATE TABLE Games (
+CREATE TABLE Games
+(
     game_id INT PRIMARY KEY IDENTITY(1,1),
     game_name VARCHAR(100) NOT NULL,
     genre VARCHAR(50),
@@ -44,7 +47,8 @@ GO
 
 
 -- Table for managing payments
-CREATE TABLE Payments (
+CREATE TABLE Payments
+(
     payment_id INT PRIMARY KEY IDENTITY(1,1),
     customer_id INT NOT NULL,
     amount DECIMAL(10, 2) NOT NULL,
@@ -55,7 +59,8 @@ CREATE TABLE Payments (
 GO
 
 -- Table for managing game sessions
-CREATE TABLE GameSessions (
+CREATE TABLE GameSessions
+(
     session_id INT PRIMARY KEY IDENTITY(1,1),
     customer_id INT NOT NULL,
     game_id INT NOT NULL,
@@ -69,7 +74,8 @@ CREATE TABLE GameSessions (
 GO
 
 -- Table for managing companions (female companions)
-CREATE TABLE Companions (
+CREATE TABLE Companions
+(
     companion_id INT PRIMARY KEY IDENTITY(1,1),
     full_name VARCHAR(100) NOT NULL,
     age INT NOT NULL,
@@ -80,7 +86,8 @@ CREATE TABLE Companions (
 GO
 
 -- Table for managing special VIP services (hiring companions and ordering oysters)
-CREATE TABLE VIPServices (
+CREATE TABLE VIPServices
+(
     service_id INT PRIMARY KEY IDENTITY(1,1),
     service_name VARCHAR(100) NOT NULL,
     description TEXT NOT NULL,
@@ -89,14 +96,16 @@ CREATE TABLE VIPServices (
 GO
 
 -- Insert predefined services (e.g., Playing Game and Ordering Oysters)
-INSERT INTO VIPServices (service_name, description, price)
+INSERT INTO VIPServices
+    (service_name, description, price)
 VALUES
-('Companion Play', 'Hire a female companion to play games with you', 50.00),
-('Oysters Package', 'Order a plate of fresh oysters to enjoy during your session', 30.00);
+    ('Companion Play', 'Hire a female companion to play games with you', 50.00),
+    ('Oysters Package', 'Order a plate of fresh oysters to enjoy during your session', 30.00);
 GO
 
 -- Table for managing VIP bookings (track when customers book a companion or service)
-CREATE TABLE VIPBookings (
+CREATE TABLE VIPBookings
+(
     vip_booking_id INT PRIMARY KEY IDENTITY(1,1),
     customer_id INT NOT NULL,
     companion_id INT NULL,
@@ -111,7 +120,8 @@ CREATE TABLE VIPBookings (
 GO
 
 -- Table for managing bookings
-CREATE TABLE Bookings (
+CREATE TABLE Bookings
+(
     booking_id INT PRIMARY KEY IDENTITY(1,1),
     customer_id INT NOT NULL,
     pc_id INT NOT NULL,
@@ -126,10 +136,12 @@ CREATE TABLE Bookings (
 GO
 
 -- Table for managing admin users
-CREATE TABLE Admins (
+CREATE TABLE Admins
+(
     admin_id INT PRIMARY KEY IDENTITY(1,1),
     username VARCHAR(50) NOT NULL UNIQUE,
-    password VARCHAR(100) NOT NULL, -- Password should be securely hashed
+    password VARCHAR(100) NOT NULL,
+    -- Password should be securely hashed
     full_name VARCHAR(100) NOT NULL,
     email VARCHAR(100) NOT NULL UNIQUE,
     phone_number VARCHAR(15),
