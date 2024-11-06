@@ -1,0 +1,23 @@
+So...
+Sth you could encounter while trying to setup this webpage
+
+You tried to initialize the server in Terminal with
+node server\server.js
+
+Most likely, the error will be in this part
+
+const dbConfig = {
+  user: 'Your_Username',
+  password: 'Your_Password',
+  database: 'CyberGaming',
+  options: {
+    encrypt: false,
+    trustServerCertificate: true
+  }
+};
+
+Resolves:
+Create a user profile in SQL Server (In SMSS)
+Grant full permission to the user profile
+If the problem still persists, refer to this page:
+https://learn.microsoft.com/en-us/answers/questions/69846/fixing-error-0-no-process-is-on-the-other-end-of-t
