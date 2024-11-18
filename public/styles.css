@@ -100,23 +100,36 @@ main {
     line-height: 1.5;
 }
 
-.food-gallery {
+.things-gallery {
     width: 75%;
     margin-top: 20px; /* Space between the section and other content */
 }
 
-.food-gallery h2 {
+.things-gallery h2 {
     font-size: 24px;
     margin-bottom: 20px; /* Space below the heading */
 }
 
-.food-items-container {
+.food-items-container, .drink-items-container, .cigarette-items-container, .game-card-items-container{
     display: grid;
     grid-template-columns: repeat(5, 1fr); /* 5 columns */
     gap: 20px; /* Space between items */
 }
 
 .food-item {
+    background-color: #424681;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 300px; /* Uniform height for items */
+}
+
+.drink-item {
     background-color: #005f73;
     color: #fff;
     text-align: center;
@@ -129,7 +142,33 @@ main {
     height: 300px; /* Uniform height for items */
 }
 
-.food-item .image {
+.cigarette-item {
+    background-color: #00735a;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 300px; /* Uniform height for items */
+}
+
+.game-card-item {
+    background-color: #254600;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 300px; /* Uniform height for items */
+}
+
+.food-item .image, .drink-item .image, .cigarette-item .image, .game-card-item .image {
     width: 100%;
     height: 200px; /* Uniform height for images */
     background-color: #0a9396;
@@ -141,7 +180,7 @@ main {
     margin-bottom: 10px;
 }
 
-.food-item p {
+.food-item p, .drink-item p, .cigarette-item p, .game-card-item p {
     margin: 0;
     font-size: 14px;
 }
