@@ -184,7 +184,8 @@ body {
     padding: 26px;
 }
 
-.container main .trending .left .info h2 {
+.container main .trending .left .info h2,
+.container main .trending .left .info2 h2 {
     font-size: 56px;
     margin-bottom: 8px;
 }
@@ -194,19 +195,27 @@ body {
     display: inline;
 }
 
-.container main .trending .left .info h5 {
+.container main .trending .left .info2 h4,
+.container main .trending .left .info2 h5 {
+    display: inline;
+}
+
+.container main .trending .left .info h5,
+.container main .trending .left .info2 h5 {
     margin-left: 12px;
     color: #919191;
 }
 
-.container main .trending .left .info .buttons {
+.container main .trending .left .info .buttons,
+.container main .trending .left .info2 .buttons {
     margin-top: 30px;
     display: flex;
     align-items: center;
     gap: 16px;
 }
 
-.container main .trending .left .info .buttons button {
+.container main .trending .left .info .buttons button,
+.container main .trending .left .info2 .buttons button {
     padding: 12px 16px;
     background-color: #5773ff;
     border: none;
@@ -224,9 +233,19 @@ body {
     border-radius: 50%;
 }
 
+.container main .trending .left .info2 .buttons i {
+    color: #5773ff;
+    font-size: 20px;
+    border: 2px solid #fff;
+    padding: 10px;
+    border-radius: 50%;
+}
+
 .container main .trending img {
     width: 300px;
     height: 200px;
+    float: right;
+
 }
 
 
