@@ -178,7 +178,8 @@ body {
     color: #fff;
 }
 
-.container main .trending .left .info {
+.container main .trending .left .info,
+.container main .trending .left .info2 {
     margin-top: 12px;
     padding: 26px;
 }
@@ -227,6 +228,8 @@ body {
     width: 300px;
     height: 200px;
 }
+
+
 
 .container main .playlist {
     margin-top: 14px;
@@ -752,4 +755,48 @@ body {
         font-size: 22px;
     }
 
+}
+
+/* Container của trending */
+.trending {
+    position: relative;
+    /* Để ba dấu gạch ngang có thể được định vị tuyệt đối so với phần tử này */
+}
+
+/* Ba dấu gạch ngang nằm ngang ở giữa */
+.menu-icon {
+    position: absolute;
+    /* Định vị tuyệt đối */
+    bottom: 10px;
+    /* Đặt ba dấu gạch ngang cách đáy 10px */
+    left: 50%;
+    /* Đặt ba dấu gạch ngang vào vị trí giữa */
+    transform: translateX(-50%);
+    /* Dịch chuyển để căn giữa chính xác */
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    /* Căn giữa các dấu gạch ngang theo chiều ngang */
+    align-items: center;
+    /* Căn giữa các dấu gạch ngang theo chiều dọc */
+    width: 50px;
+    /* Tổng chiều rộng của ba dấu gạch ngang */
+}
+
+/* Dấu gạch ngang */
+.menu-icon .dot {
+    font-size: 20px;
+    /* Điều chỉnh kích thước dấu gạch ngang */
+    color: #fff;
+    /* Màu của dấu gạch ngang */
+    margin: 5px;
+    /* Khoảng cách giữa các dấu gạch ngang */
+    text-align: center;
+    /* Căn giữa dấu gạch ngang */
+}
+
+/* Khi người dùng hover lên dấu gạch ngang */
+.menu-icon .dot:hover {
+    color: #76c7c0;
+    /* Màu sáng khi hover */
 }
