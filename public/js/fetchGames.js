@@ -1,13 +1,18 @@
-fetch('/api/games')
-  .then(response => response.json())
-  .then(data => {
-    console.log(data); // Add this line to inspect the data structure
-    const gamesList = document.createElement('ul');
-    data.forEach(game => {
-      const listItem = document.createElement('li');
-      listItem.textContent = game.game_name // Adjust to match your actual column name
-      gamesList.appendChild(listItem);
-    });
-    document.body.appendChild(gamesList);
-  })
-  .catch(error => console.error('Error fetching games:', error));
+// fetchGames.js
+async function fetchGames() {
+    try {
+        const response = await fetch('/api/games');
+        const games = await response.json();
+        const gamesList = document.getElementById('games-list');
+        
+        games.forEach(game => {
+            const li = document.createElement('li');
+            li.textContent = `Name: ${game.game_name}, Genre: ${game.genre}, Release Year: $${game.release_year}`;
+            gamesList.appendChild(li);
+        });
+    } catch (err) {
+        console.error('Error fetching games:', err);
+    }
+}
+
+fetchGames();

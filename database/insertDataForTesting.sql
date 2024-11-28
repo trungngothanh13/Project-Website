@@ -97,3 +97,5 @@ SELECT *
 FROM VIPBookings
 SELECT *
 FROM VIPServices
+
+USE CyberGaming
