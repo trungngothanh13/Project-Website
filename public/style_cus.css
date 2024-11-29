@@ -426,128 +426,79 @@ body {
     color: #fff;
 }
 
-.container .right-section .music-player {
-    color: #fff;
-    background-color: #202026;
-    border-radius: 6px;
-    height: 88%;
-    display: flex;
-    flex-direction: column;
-}
-
-.container .right-section .music-player .top-section {
+/* Bảng Leaderboard container */
+.leaderboard-container {
+    background-color: #333;  /* Nền màu đen */
+    border-radius: 10px;
     padding: 20px;
-    height: 86%;
+    width: 80%;
+    margin: 0 auto;
+    margin-bottom: 20px; /* Thêm khoảng cách giữa hai bảng */
+    color: white;  /* Phông chữ màu trắng */
 }
 
-.container .right-section .music-player .header {
+/* Header của bảng leaderboard */
+.header {
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    margin-bottom: 30px;
+    align-items: center;
+    font-size: 1.2em;
+    margin-bottom: 20px;
 }
 
-.container .right-section .music-player .song-info {
+/* Danh sách leaderboard */
+.leaderboard {
     display: flex;
     flex-direction: column;
+}
+
+/* Mỗi mục trong leaderboard */
+.leaderboard-item {
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: 24px;
+    background-color: #444;  /* Màu nền nhẹ hơn cho mỗi mục */
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Thứ hạng */
+.rank {
+    font-weight: bold;
+    color: #FFD700; /* Vàng cho thứ hạng */
+}
+
+/* Tên người chơi */
+.player-name {
+    font-size: 1.1em;
+    flex-grow: 1;
     text-align: center;
 }
 
-.container .right-section .music-player .song-info img {
-    width: 280px;
-    height: 220px;
-}
-
-.container .right-section .music-player .description h3 {
-    font-size: 26px;
-    font-weight: 500;
-    margin-bottom: 8px;
-}
-
-.container .right-section .music-player .description h5 {
-    font-size: 16px;
-    margin-bottom: 4px;
-}
-
-.container .right-section .music-player .description p {
-    color: #919191;
-    font-size: 12px;
+/* Điểm số (Top-up) hoặc Thời gian chơi (Most Played Time) */
+.score, .time-played {
+    font-size: 1.1em;
     font-weight: bold;
 }
 
-.container .right-section .music-player .song-info .progress {
-    display: flex;
-    align-items: center;
-    margin: 10px 0;
+/* Biểu tượng header */
+.header i {
+    font-size: 1.5em;
+    color: #FF6347; /* Màu đỏ cho biểu tượng thời gian */
 }
 
-.container .right-section .music-player .song-info .progress p {
-    font-size: 11px;
+/* Hiệu ứng hover cho mỗi mục trong leaderboard */
+.leaderboard-item:hover {
+    background-color: #555; /* Màu nền khi hover */
+    cursor: pointer;
 }
 
-.container .right-section .music-player .song-info .progress .active-line {
-    position: relative;
-    width: 120px;
-    height: 2px;
-    background-color: #fff;
-    margin-left: 30px;
-}
-
-.container .right-section .music-player .song-info .progress .deactive-line {
-    width: 80px;
-    height: 2px;
-    background-color: #919191;
-    margin-right: 30px;
-}
-
-.container .right-section .music-player .song-info .progress .active-line::before {
-    content: "";
-    background-color: #25252d;
-    height: 10px;
-    width: 10px;
-    border: 2px solid #fff;
-    position: absolute;
-    top: -6px;
-    left: 120px;
-    border-radius: 50%;
-}
-
-.container .right-section .music-player .player-actions {
-    background-color: #5773ff;
-    height: 26%;
-    border-radius: 6px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-}
-
-.container .right-section .music-player .player-actions .buttons {
-    display: flex;
-    align-items: center;
-    gap: 30px;
-    margin-top: 24px;
-}
-
-.container .right-section .music-player .player-actions .buttons i {
-    font-size: 20px;
-}
-
-.container .right-section .music-player .player-actions .buttons .play-button {
-    padding: 16px;
-    background-color: #fff;
-    color: #5773ff;
-    border-radius: 18px;
-}
-
-.container .right-section .music-player .player-actions .lyrics {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: absolute;
-    bottom: 8px;
+/* Làm thứ hạng #1 nổi bật */
+.leaderboard-item:nth-child(1) .rank {
+    color: #FFD700;  /* Vàng cho thứ hạng 1 */
+    font-size: 1.2em; /* Phóng to kích thước chữ */
 }
 
 .container main header .nav-links button,
