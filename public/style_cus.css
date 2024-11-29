@@ -178,12 +178,16 @@ body {
     color: #fff;
 }
 
-.container main .trending .left .info {
+.container main .trending .left .info,
+.container main .trending .left .info2,
+.container main .trending .left .info3 {
     margin-top: 12px;
     padding: 26px;
 }
 
-.container main .trending .left .info h2 {
+.container main .trending .left .info h2,
+.container main .trending .left .info2 h2,
+.container main .trending .left .info3 h2 {
     font-size: 56px;
     margin-bottom: 8px;
 }
@@ -193,19 +197,35 @@ body {
     display: inline;
 }
 
-.container main .trending .left .info h5 {
+.container main .trending .left .info2 h4,
+.container main .trending .left .info2 h5 {
+    display: inline;
+}
+
+.container main .trending .left .info3 h4,
+.container main .trending .left .info3 h5 {
+    display: inline;
+}
+
+.container main .trending .left .info h5,
+.container main .trending .left .info2 h5,
+.container main .trending .left .info3 h5 {
     margin-left: 12px;
     color: #919191;
 }
 
-.container main .trending .left .info .buttons {
+.container main .trending .left .info .buttons,
+.container main .trending .left .info2 .buttons,
+.container main .trending .left .info3 .buttons {
     margin-top: 30px;
     display: flex;
     align-items: center;
     gap: 16px;
 }
 
-.container main .trending .left .info .buttons button {
+.container main .trending .left .info .buttons button,
+.container main .trending .left .info2 .buttons button,
+.container main .trending .left .info3 .buttons button {
     padding: 12px 16px;
     background-color: #5773ff;
     border: none;
@@ -215,7 +235,9 @@ body {
     cursor: pointer;
 }
 
-.container main .trending .left .info .buttons i {
+.container main .trending .left .info .buttons i,
+.container main .trending .left .info2 .buttons i,
+.container main .trending .left .info3 .buttons i {
     color: #5773ff;
     font-size: 20px;
     border: 2px solid #fff;
@@ -223,10 +245,16 @@ body {
     border-radius: 50%;
 }
 
+
+
 .container main .trending img {
     width: 300px;
     height: 200px;
+    float: right;
+
 }
+
+
 
 .container main .playlist {
     margin-top: 14px;
@@ -752,4 +780,52 @@ body {
         font-size: 22px;
     }
 
+}
+
+/* Container của trending */
+.trending {
+    position: relative;
+    /* Để ba dấu gạch ngang có thể được định vị tuyệt đối so với phần tử này */
+}
+
+/* Ba dấu gạch ngang nằm ngang ở giữa */
+.menu-icon {
+    position: absolute;
+    /* Định vị tuyệt đối */
+    bottom: 10px;
+    /* Đặt ba dấu gạch ngang cách đáy 10px */
+    left: 50%;
+    /* Đặt ba dấu gạch ngang vào vị trí giữa */
+    transform: translateX(-50%);
+    /* Dịch chuyển để căn giữa chính xác */
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    /* Căn giữa các dấu gạch ngang theo chiều ngang */
+    align-items: center;
+    /* Căn giữa các dấu gạch ngang theo chiều dọc */
+    width: 50px;
+    /* Tổng chiều rộng của ba dấu gạch ngang */
+}
+
+/* Dấu _ */
+.menu-icon .dot {
+    font-size: 40px;
+    /* Tăng kích thước dấu _ */
+    color: #fff;
+    /* Màu tối cho dấu _ */
+    margin: 0 10px;
+    /* Khoảng cách giữa các dấu _ */
+    transition: transform 0.3s ease, color 0.3s ease;
+    /* Thêm hiệu ứng khi hover */
+    text-align: center;
+    /* Căn giữa dấu _ */
+}
+
+/* Khi người dùng hover lên dấu _ */
+.menu-icon .dot:hover {
+    color: #76c7c0;
+    /* Màu sáng khi hover */
+    transform: scale(1.2);
+    /* Tăng kích thước khi hover để tạo hiệu ứng */
 }
