@@ -901,3 +901,88 @@ body {
     /* Hiệu ứng nổi lên khi hover */
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
 }
+
+/* Bảng Leaderboard container */
+.leaderboard-container {
+    background-color: #333;
+    /* Nền màu đen */
+    border-radius: 10px;
+    padding: 20px;
+    width: 80%;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    /* Thêm khoảng cách giữa hai bảng */
+    color: white;
+    /* Phông chữ màu trắng */
+}
+
+/* Header của bảng leaderboard */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+/* Danh sách leaderboard */
+.leaderboard {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Mỗi mục trong leaderboard */
+.leaderboard-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #444;
+    /* Màu nền nhẹ hơn cho mỗi mục */
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Thứ hạng */
+.rank {
+    font-weight: bold;
+    color: #FFD700;
+    /* Vàng cho thứ hạng */
+}
+
+/* Tên người chơi */
+.player-name {
+    font-size: 1.1em;
+    flex-grow: 1;
+    text-align: center;
+}
+
+/* Điểm số (Top-up) hoặc Thời gian chơi (Most Played Time) */
+.score,
+.time-played {
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+/* Biểu tượng header */
+.header i {
+    font-size: 1.5em;
+    color: #FF6347;
+    /* Màu đỏ cho biểu tượng thời gian */
+}
+
+/* Hiệu ứng hover cho mỗi mục trong leaderboard */
+.leaderboard-item:hover {
+    background-color: #555;
+    /* Màu nền khi hover */
+    cursor: pointer;
+}
+
+/* Làm thứ hạng #1 nổi bật */
+.leaderboard-item:nth-child(1) .rank {
+    color: #FFD700;
+    /* Vàng cho thứ hạng 1 */
+    font-size: 1.2em;
+    /* Phóng to kích thước chữ */
+}
