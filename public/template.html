@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="style_topup.css">
+    <title>Music Player Platform | AsmrProg</title>
+</head>
+
+<body>
+
+    <div class="container">
+        <aside class="sidebar">
+            <div class="logo">
+                <button class="menu-btn" id="menu-close">
+                    <i class='bx bx-log-out-circle'></i>
+                </button>
+                <i class='bx bxs-face-mask'></i></i>
+                <a href="#">CYPER GAMING</a>
+            </div>
+
+            <div class="menu">
+                <h5>Menu</h5>
+                <ul>
+                    <li>
+                        <i class='bx bxs-user-circle'></i></i>
+                        <a href="#">Profile</a>
+                    </li>
+                    <li>
+                        <i class='bx bx-search'></i></i>
+                        <a href="#">Search</a>
+                    </li>
+                    <li>
+                        <i class='bx bxs-heart'></i></i>
+                        <a href="#">Favorites</a>
+                    </li>
+                    <li>
+                        <i class='bx bxs-wallet'></i></i>
+                        <a href="#">Balance</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="menu">
+                <h5>Category</h5>
+                <ul>
+                    <li>
+                        <i class='bx bxs-bug'></i></i>
+                        <a href="#">Error Report</a>
+                    </li>
+                    <li>
+                        <i class='bx bx-money'></i></i>
+                        <a href="topup.html">Top Up</a>
+                    </li>
+                    <li>
+                        <i class='bx bx-game'></i></i>
+                        <a href="#">Games</a>
+                    </li>
+                    <li>
+                        <i class='bx bxs-drink'></i></i>
+                        <a href="#">Drinks</a>
+                    </li>
+                    <li>
+                        <i class='bx bxs-bowl-hot'></i></i>
+                        <a href="#">Foods</a>
+                    </li>
+                    <li>
+                        <i class='bx bx-chat'></i></i>
+                        <a href="#">Chat</a>
+                    </li>
+
+                </ul>
+            </div>
+
+            <!-- <div class="playing">
+                <div class="top">
+                    <img src="assets/current.png">
+                    <h4>Apple<br>Homepod</h4>
+                </div>
+                <div class="bottom">
+                    <i class='bx bx-podcast'></i>
+                    <p>Playing On Device</p>
+                </div>
+            </div> -->
+
+
+        </aside>
+
+        <main>
+            <header>
+                <div class="nav-links">
+                    <button class="menu-btn" id="menu-open">
+                        <i class='bx bx-menu'></i>
+                    </button>
+                    <a href="#">Music</a>
+                    <a href="#">Live</a>
+                    <a href="#">Podcast</a>
+                </div>
+
+                <div class="search">
+                    <i class='bx bx-search'></i>
+                    <input type="text" placeholder="Type here to search">
+                </div>
+
+            </header>
+
+            <div class="trending">
+                <div class="left">
+                    <h5>Trending New Products</h5>
+
+                    <!-- Thẻ info1 - Sản phẩm đầu tiên -->
+                    <div class="info" id="info1">
+                        <h2>NIGHT COMBOS</h2>
+                        <h4>Night Combo – Play more, pay less. Your late-night gaming adventure starts here!</h4>
+                        <h5>1,459</h5> <i class='bx bx-user'></i>
+                        <div class="buttons">
+                            <button>Top Up Now</button>
+                            <i class='bx bxs-heart'></i>
+                        </div>
+                    </div>
+
+                    <!-- Thẻ info2 - Sản phẩm thứ hai -->
+                    <div class="info2" id="info2" style="display: none;">
+                        <h2>MINT COFFEE</h2>
+                        <h4>The combination of mint and coffee.</h4>
+                        <h5>2,551</h5> <i class='bx bx-user'></i>
+                        <div class="buttons">
+                            <button>Order Now</button>
+                            <i class='bx bxs-heart'></i>
+                        </div>
+                    </div>
+
+                    <!-- Thẻ info3 - Sản phẩm thứ ba -->
+                    <div class="info3" id="info3" style="display: none;">
+                        <h2>VALORANT</h2>
+                        <h4>A charater-based 5v5 tactical shooter.</h4>
+                        <h5>5,667</h5> <i class='bx bx-user'></i>
+                        <div class="buttons">
+                            <button>Play Now</button>
+                            <i class='bx bxs-heart'></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hình ảnh sản phẩm nằm ngoài thẻ info -->
+                <img src="assets/instant_noddle.png" id="image1" alt="Night Combos" style="display: block;">
+                <img src="assets/mint_coffee.png" id="image2" alt="Mint Coffee" style="display: none;">
+                <img src="assets/valorant.png" id="image3" alt="Valorant" style="display: none;">
+
+                <!-- Dấu _ để chuyển giữa các div -->
+                <div class="menu-icon">
+                    <span class="dot" onclick="showInfo('info1')">_</span>
+                    <span class="dot" onclick="showInfo('info2')">_</span>
+                    <span class="dot" onclick="showInfo('info3')">_</span>
+                </div>
+            </div>
+
+        </main>
+
+        <div class="right-section">
+
+            <div class="profile">
+                <i class='bx bxs-bell'></i>
+                <i class='bx bxs-cog'></i>
+                <div class="user">
+                    <div class="left">
+                        <img src="assets/profile.png">
+                    </div>
+                    <div class="right">
+                        <h5>Jhon Doe</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="main.js"></script>
+</body>
+
+</html>
