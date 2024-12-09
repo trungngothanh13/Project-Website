@@ -1,0 +1,90 @@
+/* General Body Styling */
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: black; /* Black background */
+    font-family: Arial, sans-serif;
+    color: white; /* Default text color */
+    position: relative;
+  }
+  
+  /* Error Box Styling */
+  .error-box {
+    width: 400px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: white; /* White background for the form */
+    color: black; /* Black text for the form */
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+  }
+  
+  .error-header {
+    background-color: #dc3545; /* Red background */
+    color: white;
+    padding: 10px;
+    text-align: center;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+  
+  .error-body form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .error-body label {
+    margin-top: 10px;
+    font-weight: bold;
+  }
+  
+  .error-body input,
+  .error-body textarea {
+    margin-top: 5px;
+    margin-bottom: 15px;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .error-body button {
+    padding: 10px 15px;
+    background-color: #28a745; /* Green button */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .error-body button:hover {
+    background-color: #218838;
+  }
+  
+  /* Button for Homepage */
+  .home-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background-color: #ff5733; /* Bright orange button */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .home-button:hover {
+    background-color: #c4421a; /* Darker orange on hover */
+  }
+  

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Error Report</title>
+  <link rel="stylesheet" href="style_error.css"> 
+</head>
+<body>
+  <div class="error-box">
+    <div class="error-header">
+      <h4>Report an Error</h4>
+    </div>
+    <div class="error-body">
+      <form id="error-form">
+        <label for="error-title">Error Title:</label>
+        <input type="text" id="error-title" placeholder="Enter error title" required />
+
+        <label for="error-description">Error Description:</label>
+        <textarea id="error-description" placeholder="Describe the issue..." rows="5" required></textarea>
+
+        <label for="contact-info">Your Contact Info (optional):</label>
+        <input type="email" id="contact-info" placeholder="Enter your email (optional)" />
+
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
+
+  <button class="home-button" onclick="goHome()">BACK</button>
+
+  <script>
+    function goHome() {
+      window.location.href = "cus.html"; // Replace with your homepage URL
+    }
+
+    // Handle form submission
+    document.getElementById('error-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Thank you for your report! We will review the issue.');
+      document.getElementById('error-form').reset();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat Box</title>
+  <link rel="stylesheet" href="style_chat.css"> 
+</head>
+<body>
+  <div class="chat-box">
+    <div class="chat-header">
+      <h4>Contact Us</h4>
+    </div>
+    <div class="chat-body">
+      <p>Hello! How can we help you today?</p>
+    </div>
+    <div class="contact-info">
+      <p><strong>Email:</strong> cybergaming@gmail.com</p>
+      <p><strong>Phone:</strong> +123-456-7890</p>
+    </div>
+    <div class="chat-footer">
+      <input type="text" placeholder="Type your message..." />
+      <button>Send</button>
+    </div>
+  </div>
+
+  <button class="home-button" onclick="goHome()">BACK</button>
+
+  <script>
+    function goHome() {
+      window.location.href = "cus.html";
+    }
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>
