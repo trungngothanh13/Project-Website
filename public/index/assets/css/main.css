@@ -3160,6 +3160,11 @@ button:disabled,
 	margin-top: -1.75em;
 	position: relative;
 	width: calc(100% + 3.5em);
+	/* Keep width as is */
+	height: auto;
+	/* Set a fixed height */
+	object-fit: cover;
+	/* Ensure the image covers the area without distorting its aspect ratio */
 }
 
 .features article .image img {
@@ -3944,16 +3949,33 @@ body.is-preload #banner p {
 }
 
 .wrapper.spotlight .image {
-	border-radius: 100%;
-	margin: 0 3em 2em 0;
-	width: 22em;
+	border-radius: 50%;
+	/* Bo góc 100% để tạo hình tròn */
+	margin: 0 2em 2em 0;
+	/* Khoảng cách phù hợp với nội dung */
+	width: 100%;
+	/* Đặt chiều rộng */
+	height: 15em;
+	/* Đặt chiều cao bằng chiều rộng để đảm bảo hình vuông */
 	overflow: hidden;
-	-ms-flex: 1;
+	display: flex;
+	/* Sử dụng flex để căn giữa nội dung */
+	justify-content: center;
+	align-items: center;
+	background: #f0f0f0;
+	/* Màu nền (có thể bỏ nếu không cần) */
+
 }
 
 .wrapper.spotlight .image img {
-	border-radius: 100%;
 	width: 100%;
+	/* Ảnh lấp đầy container */
+	height: 100%;
+	/* Đảm bảo ảnh luôn phù hợp */
+	object-fit: cover;
+	/* Đảm bảo không bị méo ảnh */
+	border-radius: 50%;
+	/* Đảm bảo ảnh bên trong cũng hình tròn */
 }
 
 .wrapper.spotlight .content {
