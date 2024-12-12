@@ -24,23 +24,18 @@ sql.connect(dbConfig, (err) => {
   console.log('Connected to the database');
 });
 
-app.listen(PORT, (err) => {
-  if (err) {
-    console.error('Failed to start server:', err);
-    return;
-  }
+app.use(express.static(path.join(__dirname, '../public')));
+
+// Import the game top-ups routes
+const gameTopUpsRoutes = require('./routes/gameTopUpsRoutes');
+
+// Use the route at /api/game-topups
+app.use('/api/game-topups', gameTopUpsRoutes);
+
+const server = app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
 
-app.use(express.static(path.join(__dirname, '../public')));
-
-app.get('/api/games', async (req, res) => {
-  try {
-    const request = new sql.Request();
-    const result = await request.query('SELECT * FROM Games');
-    res.json(result.recordset);
-  } catch (err) {
-    console.error('Error fetching data from database:', err);
-    res.status(500).send('Internal Server Error');
-  }
+server.on('error', (err) => {
+  console.error('Failed to start server:', err);
 });
