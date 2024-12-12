@@ -35,10 +35,10 @@
             // On successful login
             if (data.role === 'admin') {
             localStorage.setItem('role', 'admin');  // Save admin role in localStorage
-            window.location.href = '/html/admin-dashboard.html';
+            window.location.href = 'admin.html';
             } else {
             localStorage.setItem('role', 'customer');  // Save customer role in localStorage
-            window.location.href = '/html/customer-dashboard.html';
+            window.location.href = 'cus.html';
             }
           } else {
             alert('Error: ' + data.message);
