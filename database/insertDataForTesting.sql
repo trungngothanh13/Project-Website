@@ -76,6 +76,62 @@ VALUES
     ('admin', 'adminpassword', 'Super Admin', 'admin@example.com', '1231231234', 'SuperAdmin'),
     ('moderator', 'modpassword', 'Site Moderator', 'mod@example.com', '3213214321', 'Moderator');
 
+-- Insert data into Drinks table
+INSERT INTO Drinks
+    (name, price)
+VALUES
+    ('Water', 5000.00),
+    ('Sting Red', 15000.00),
+    ('Sting Yellow', 15000.00),
+    ('RedBull', 20000.00),
+    ('7-up', 15000.00),
+    ('Milk', 20000.00),
+    ('ChocoLEAN', 30000.00),
+    ('Goat Kefir S', 100000.00),
+    ('Man''s Milk', 500000.00);
+GO
+
+-- Insert data into Foods table
+INSERT INTO Foods
+    (name, price)
+VALUES
+    ('Rice', 5000.00),
+    ('Fried Rice with egg', 20000.00),
+    ('Rice with chicken', 30000.00),
+    ('Rice with beef', 30000.00),
+    ('Noodle', 10000.00),
+    ('Noodle with 2 eggs', 20000.00),
+    ('Chicken Noodle', 30000.00),
+    ('Beef Noodle', 30000.00),
+    ('50kg (Oysters)', 5000000.00);
+GO
+
+-- Insert data into Games_top_up table
+INSERT INTO Games_top_up
+    (option_name, price)
+VALUES
+    ('VP', 100000.00),
+    ('RP', 100000.00),
+    ('GOLD', 100000.00),
+    ('STEAM Cash', 100000.00),
+    ('Epic Card', 100000.00),
+    ('Minecraft Coin', 100000.00),
+    ('ChatGPT Plus for 1 person', 500000.00);
+GO
+
+-- Insert data into Top_up table
+INSERT INTO Top_up
+    (amount)
+VALUES
+    (10000.00),
+    (19000.00),
+    (58000.00),
+    (117000.00),
+    (236000.00),
+    (355000.00),
+    (500000.00);
+GO
+
 
 SELECT *
 FROM Admins
@@ -97,3 +153,13 @@ SELECT *
 FROM VIPBookings
 SELECT *
 FROM VIPServices
+SELECT *
+FROM Foods
+SELECT *
+FROM Drinks
+SELECT *
+FROM Top_up
+SELECT *
+FROM Games_Top_up
+
+USE CyberGaming;

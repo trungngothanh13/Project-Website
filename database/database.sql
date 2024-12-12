@@ -14,7 +14,8 @@ CREATE TABLE PCs
     ip_address VARCHAR(15) NOT NULL,
     status VARCHAR(20) NOT NULL CHECK (status IN ('Available', 'In Use', 'Under Maintenance')),
     purchase_date DATE,
-    specification TEXT
+    specification VARCHAR(MAX)
+    -- Changed from TEXT to VARCHAR(MAX)
 );
 GO
 
@@ -39,12 +40,13 @@ CREATE TABLE Games
     game_name VARCHAR(100) NOT NULL,
     genre VARCHAR(50),
     developer VARCHAR(100),
-    release_year INT
+    release_year INT,
+    created_by INT NULL,
+    updated_by INT NULL,
+    FOREIGN KEY (created_by) REFERENCES Admins(admin_id),
+    FOREIGN KEY (updated_by) REFERENCES Admins(admin_id)
 );
 GO
-
-
-
 
 -- Table for managing payments
 CREATE TABLE Payments
@@ -54,7 +56,9 @@ CREATE TABLE Payments
     amount DECIMAL(10, 2) NOT NULL,
     payment_date DATETIME DEFAULT GETDATE(),
     payment_method VARCHAR(20) NOT NULL CHECK (payment_method IN ('Cash', 'Credit Card', 'E-wallet')),
-    FOREIGN KEY (customer_id) REFERENCES Customers(customer_id)
+    admin_id INT NULL,
+    FOREIGN KEY (customer_id) REFERENCES Customers(customer_id),
+    FOREIGN KEY (admin_id) REFERENCES Admins(admin_id)
 );
 GO
 
@@ -81,7 +85,8 @@ CREATE TABLE Companions
     age INT NOT NULL,
     available VARCHAR(3) NOT NULL DEFAULT 'Yes' CHECK (available IN ('Yes', 'No')),
     hourly_rate DECIMAL(10, 2) NOT NULL,
-    description TEXT
+    description VARCHAR(MAX)
+    -- Changed from TEXT to VARCHAR(MAX)
 );
 GO
 
@@ -90,7 +95,8 @@ CREATE TABLE VIPServices
 (
     service_id INT PRIMARY KEY IDENTITY(1,1),
     service_name VARCHAR(100) NOT NULL,
-    description TEXT NOT NULL,
+    description VARCHAR(MAX) NOT NULL,
+    -- Changed from TEXT to VARCHAR(MAX)
     price DECIMAL(10, 2) NOT NULL
 );
 GO
@@ -113,9 +119,11 @@ CREATE TABLE VIPBookings
     booking_start_time DATETIME NOT NULL,
     booking_end_time DATETIME,
     total_price DECIMAL(10, 2) NOT NULL,
+    admin_id INT NULL,
     FOREIGN KEY (customer_id) REFERENCES Customers(customer_id),
     FOREIGN KEY (companion_id) REFERENCES Companions(companion_id),
-    FOREIGN KEY (service_id) REFERENCES VIPServices(service_id)
+    FOREIGN KEY (service_id) REFERENCES VIPServices(service_id),
+    FOREIGN KEY (admin_id) REFERENCES Admins(admin_id)
 );
 GO
 
@@ -129,9 +137,11 @@ CREATE TABLE Bookings
     booking_end_time DATETIME NOT NULL,
     total_price DECIMAL(10, 2) NOT NULL,
     vip_booking_id INT NULL,
+    admin_id INT NULL,
     FOREIGN KEY (customer_id) REFERENCES Customers(customer_id),
     FOREIGN KEY (pc_id) REFERENCES PCs(pc_id),
-    FOREIGN KEY (vip_booking_id) REFERENCES VIPBookings(vip_booking_id)
+    FOREIGN KEY (vip_booking_id) REFERENCES VIPBookings(vip_booking_id),
+    FOREIGN KEY (admin_id) REFERENCES Admins(admin_id)
 );
 GO
 
@@ -150,48 +160,44 @@ CREATE TABLE Admins
 );
 GO
 
--- Alter the Bookings table to include admin_id for tracking who managed the booking
-ALTER TABLE Bookings
-ADD admin_id INT NULL,
-    FOREIGN KEY (admin_id) REFERENCES Admins(admin_id);
+-- Create additional tables with corrected syntax
+
+-- Table for managing top-ups
+CREATE TABLE Top_up
+(
+    id INT PRIMARY KEY IDENTITY(1,1),
+    -- Changed AUTO_INCREMENT to IDENTITY
+    amount DECIMAL(10),
+    custom_amount DECIMAL(10) DEFAULT NULL
+);
 GO
 
--- Add created_by and updated_by fields in Customers table to track the admin responsible
-ALTER TABLE Customers
-ADD created_by INT NULL,
-    updated_by INT NULL,
-    FOREIGN KEY (created_by) REFERENCES Admins(admin_id),
-    FOREIGN KEY (updated_by) REFERENCES Admins(admin_id);
+-- Table for managing drinks
+CREATE TABLE Drinks
+(
+    id INT PRIMARY KEY IDENTITY(1,1),
+    -- Changed AUTO_INCREMENT to IDENTITY
+    name VARCHAR(255),
+    price DECIMAL(10)
+);
 GO
 
--- Alter the VIPBookings table to include admin_id for tracking who managed the VIP booking
-ALTER TABLE VIPBookings
-ADD admin_id INT NULL,
-    FOREIGN KEY (admin_id) REFERENCES Admins(admin_id);
+-- Table for managing foods
+CREATE TABLE Foods
+(
+    id INT PRIMARY KEY IDENTITY(1,1),
+    -- Changed AUTO_INCREMENT to IDENTITY
+    name VARCHAR(255),
+    price DECIMAL(10)
+);
 GO
 
--- Add created_by and updated_by fields in PCs table to track the admin responsible
-ALTER TABLE PCs
-ADD created_by INT NULL,
-    updated_by INT NULL,
-    FOREIGN KEY (created_by) REFERENCES Admins(admin_id),
-    FOREIGN KEY (updated_by) REFERENCES Admins(admin_id);
+-- Table for managing game top-ups
+CREATE TABLE Games_top_up
+(
+    id INT PRIMARY KEY IDENTITY(1,1),
+    -- Changed AUTO_INCREMENT to IDENTITY
+    option_name VARCHAR(255),
+    price DECIMAL(10)
+);
 GO
-
--- Add created_by and updated_by fields in Games table to track the admin responsible
-ALTER TABLE Games
-ADD created_by INT NULL,
-    updated_by INT NULL,
-    FOREIGN KEY (created_by) REFERENCES Admins(admin_id),
-    FOREIGN KEY (updated_by) REFERENCES Admins(admin_id);
-GO
-
--- Alter the Payments table to include admin_id for tracking who handled the payment
-ALTER TABLE Payments
-ADD admin_id INT NULL,
-    FOREIGN KEY (admin_id) REFERENCES Admins(admin_id);
-GO
-
-
-
-
