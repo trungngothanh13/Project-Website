@@ -26,6 +26,17 @@ sql.connect(dbConfig, (err) => {
 
 app.use(express.static(path.join(__dirname, '../public')));
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// Import and use the login routes
+const loginRoutes = require('./routes/loginRoutes');
+app.use('/api/login', loginRoutes);
+
+// Import and use the signup routes
+const signupRoutes = require('./routes/signupRoutes');
+app.use('/api/signup', signupRoutes);
+
 // Import and use the game top-ups routes
 const gameTopUpsRoutes = require('./routes/gameTopUpsRoutes');
 app.use('/api/game-topups', gameTopUpsRoutes);
