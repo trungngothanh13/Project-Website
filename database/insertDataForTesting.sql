@@ -108,15 +108,15 @@ GO
 
 -- Insert data into Games_top_up table
 INSERT INTO Games_top_up
-    (option_name, price)
+    (option_name, price, ImageLink)
 VALUES
-    ('VP', 100000.00),
-    ('RP', 100000.00),
-    ('GOLD', 100000.00),
-    ('STEAM Cash', 100000.00),
-    ('Epic Card', 100000.00),
-    ('Minecraft Coin', 100000.00),
-    ('ChatGPT Plus for 1 person', 500000.00);
+    ('VP', 100000.00, '/assets/game_1.png'),
+    ('RP', 100000.00, '/assets/game_2.png'),
+    ('GOLD', 100000.00, '/assets/game_3.png'),
+    ('STEAM Cash', 100000.00, '/assets/game_4.png'),
+    ('Epic Card', 100000.00, '/assets/game_5.png'),
+    ('Minecraft Coin', 100000.00, '/assets/game_6.png'),
+    ('ChatGPT Plus for 1 person', 500000.00, '/assets/game_7.png');
 GO
 
 -- Insert data into Top_up table
