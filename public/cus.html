@@ -91,9 +91,6 @@
         <main>
             <header>
                 <div class="nav-links">
-                    <button class="menu-btn" id="menu-open">
-                        <i class='bx bx-menu'></i>
-                    </button>
                     <a href="cus.html">HOME PAGE </a>
                     <a href="https://www.twitch.tv/">TWITCH LIVE </a>
                     <a href="https://www.youtube.com/">YOUTUBE LIVE </a>
@@ -287,17 +284,30 @@
         <div class="right-section">
 
             <div class="profile">
-                <i class='bx bxs-bell'></i>
-                <i class='bx bxs-cog'></i>
-                <div class="user">
+                <i class='bx bxs-bell' aria-label="Notifications"></i>
+                <i class='bx bxs-cog' aria-label="Settings"></i>
+                
+                <!-- Checkout Box with Common Class -->
+                <div class="profile-item checkout">
                     <div class="left">
-                        <img src="assets/profile.png">
+                        <img src="assets/cart.png" alt="Cart">
                     </div>
                     <div class="right">
-                        <h5>Jhon Doe </h5>
+                        <h5><a href="checkout.html">Checkout</a></h5>
+                    </div>
+                </div>
+                
+                <!-- User Box with Common Class -->
+                <div class="profile-item user">
+                    <div class="left">
+                        <img src="assets/profile.png" alt="Profile">
+                    </div>
+                    <div class="right">
+                        <h5>Jhon Doe</h5>
                     </div>
                 </div>
             </div>
+            
 
             <!-- Bảng Leaderboard Top 5 Top-up -->
             <div class="leaderboard-container">

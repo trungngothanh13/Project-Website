@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - CYPER GAMING</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="style_checkout.css">
+</head>
+
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="logo">
+                <i class='bx bxs-face-mask'></i>
+                <a href="cus.html">CYPER GAMING</a>
+            </div>
+
+            <div class="menu">
+                <h5>Menu</h5>
+                <ul>
+                    <li>
+                        <i class='bx bxs-user-circle'></i>
+                        <a href="#">Profile</a>
+                    </li>
+                    <li>
+                        <i class='bx bx-search'></i>
+                        <a href="#">Search</a>
+                    </li>
+                    <li>
+                        <i class='bx bxs-heart'></i>
+                        <a href="#">Favorites</a>
+                    </li>
+                    <li>
+                        <i class='bx bxs-wallet'></i>
+                        <a href="#">Balance</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="menu">
+                <h5>Category</h5>
+                <ul>
+                    <li>
+                        <i class='bx bxs-bug'></i>
+                        <a href="error.html">Error Report</a>
+                    </li>
+                    <li>
+                        <i class='bx bx-money'></i>
+                        <a href="topup.html">Top Up</a>
+                    </li>
+                    <li>
+                        <i class='bx bx-game'></i>
+                        <a href="games.html">Games</a>
+                    </li>
+                    <li>
+                        <i class='bx bxs-drink'></i>
+                        <a href="drinks.html">Drinks</a>
+                    </li>
+                    <li>
+                        <i class='bx bxs-bowl-hot'></i>
+                        <a href="foods.html">Foods</a>
+                    </li>
+                    <li>
+                        <i class='bx bx-chat'></i>
+                        <a href="chat.html">Chat</a>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+
+        <main>
+            <header>
+                <div class="nav-links">
+                    <a href="cus.html">HOME PAGE</a>
+                    <a href="https://www.twitch.tv/">TWITCH LIVE</a>
+                    <a href="https://www.youtube.com/">YOUTUBE LIVE</a>
+                </div>
+
+                <div class="search">
+                    <i class='bx bx-search'></i>
+                    <input type="text" placeholder="Type here to search">
+                </div>
+            </header>
+
+            <section class="checkout-section">
+                <h2>Checkout</h2>
+                <div class="checkout-container">
+                    <div class="checkout-items">
+                        <h3>Your Items</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Item</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                    <th>Total</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Example Item -->
+                                <tr>
+                                    <td>
+                                        <div class="item-info">
+                                            <img src="assets/fried_egg_noddle.webp" alt="Fried Egg Noodles">
+                                            <span>Fried Egg Noodles</span>
+                                        </div>
+                                    </td>
+                                    <td>30,000d</td>
+                                    <td>
+                                        <input type="number" min="1" value="1">
+                                    </td>
+                                    <td>30,000d</td>
+                                    <td>
+                                        <i class='bx bx-trash'></i>
+                                    </td>
+                                </tr>
+                                <!-- Repeat similar rows for other items -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="order-summary">
+                        <h3>Order Summary</h3>
+                        <div class="summary-item">
+                            <span>Subtotal</span>
+                            <span>30,000d</span>
+                        </div>
+                        <div class="summary-item">
+                            <span>Tax (10%)</span>
+                            <span>3,000d</span>
+                        </div>
+                        <div class="summary-item total">
+                            <span>Total</span>
+                            <span>33,000d</span>
+                        </div>
+                        <button class="checkout-button">Proceed to Payment</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <div class="right-section">
+            <div class="profile">
+                <i class='bx bxs-bell' aria-label="Notifications"></i>
+                <i class='bx bxs-cog' aria-label="Settings"></i>
+
+                <!-- Checkout Box with Common Class -->
+                <div class="profile-item checkout">
+                    <div class="left">
+                        <img src="assets/cart.png" alt="Cart">
+                        <!-- Optional Badge -->
+                        <!-- <span class="badge" id="cart-count">3</span> -->
+                    </div>
+                    <div class="right">
+                        <h5><a href="checkout.html">Checkout</a></h5>
+                    </div>
+                </div>
+
+                <!-- User Box with Common Class -->
+                <div class="profile-item user">
+                    <div class="left">
+                        <img src="assets/profile.png" alt="Profile">
+                    </div>
+                    <div class="right">
+                        <h5>Jhon Doe</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+
+</html>
