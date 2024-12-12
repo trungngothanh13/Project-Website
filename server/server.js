@@ -24,23 +24,28 @@ sql.connect(dbConfig, (err) => {
   console.log('Connected to the database');
 });
 
-app.listen(PORT, (err) => {
-  if (err) {
-    console.error('Failed to start server:', err);
-    return;
-  }
+app.use(express.static(path.join(__dirname, '../public')));
+
+// Import and use the game top-ups routes
+const gameTopUpsRoutes = require('./routes/gameTopUpsRoutes');
+app.use('/api/game-topups', gameTopUpsRoutes);
+
+// Import and use the top-ups routes
+const topUpsRoutes = require('./routes/topUpsRoutes');
+app.use('/api/topups', topUpsRoutes);
+
+// Import and use the drinks routes
+const drinksRoutes = require('./routes/drinksRoutes');
+app.use('/api/drinks', drinksRoutes);
+
+// Import and use the foods routes
+const foodsRoutes = require('./routes/foodsRoutes');
+app.use('/api/foods', foodsRoutes);
+
+const server = app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
 
-app.use(express.static(path.join(__dirname, '../public')));
-
-app.get('/api/games', async (req, res) => {
-  try {
-    const request = new sql.Request();
-    const result = await request.query('SELECT * FROM Games');
-    res.json(result.recordset);
-  } catch (err) {
-    console.error('Error fetching data from database:', err);
-    res.status(500).send('Internal Server Error');
-  }
+server.on('error', (err) => {
+  console.error('Failed to start server:', err);
 });

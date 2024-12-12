@@ -166,9 +166,9 @@ GO
 CREATE TABLE Top_up
 (
     id INT PRIMARY KEY IDENTITY(1,1),
-    -- Changed AUTO_INCREMENT to IDENTITY
-    amount DECIMAL(10),
-    custom_amount DECIMAL(10) DEFAULT NULL
+    name VARCHAR(255),
+    price DECIMAL(10),
+    ImageLink VARCHAR(500)
 );
 GO
 
@@ -178,7 +178,8 @@ CREATE TABLE Drinks
     id INT PRIMARY KEY IDENTITY(1,1),
     -- Changed AUTO_INCREMENT to IDENTITY
     name VARCHAR(255),
-    price DECIMAL(10)
+    price DECIMAL(10),
+    ImageLink VARCHAR(500)
 );
 GO
 
@@ -188,7 +189,8 @@ CREATE TABLE Foods
     id INT PRIMARY KEY IDENTITY(1,1),
     -- Changed AUTO_INCREMENT to IDENTITY
     name VARCHAR(255),
-    price DECIMAL(10)
+    price DECIMAL(10),
+    ImageLink VARCHAR(500)
 );
 GO
 
@@ -198,6 +200,11 @@ CREATE TABLE Games_top_up
     id INT PRIMARY KEY IDENTITY(1,1),
     -- Changed AUTO_INCREMENT to IDENTITY
     option_name VARCHAR(255),
-    price DECIMAL(10)
+    price DECIMAL(10),
+    ImageLink VARCHAR(500)
 );
 GO
+
+DROP TABLE Top_up
+
+USE CyberGaming;
