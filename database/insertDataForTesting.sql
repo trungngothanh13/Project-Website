@@ -78,32 +78,32 @@ VALUES
 
 -- Insert data into Drinks table
 INSERT INTO Drinks
-    (name, price)
+    (name, price, ImageLink)
 VALUES
-    ('Water', 5000.00),
-    ('Sting Red', 15000.00),
-    ('Sting Yellow', 15000.00),
-    ('RedBull', 20000.00),
-    ('7-up', 15000.00),
-    ('Milk', 20000.00),
-    ('ChocoLEAN', 30000.00),
-    ('Goat Kefir S', 100000.00),
-    ('Man''s Milk', 500000.00);
+    ('Water', 5000.00, '/assets/drink_1.png'),
+    ('Sting Red', 15000.00, '/assets/drink_2.png'),
+    ('Sting Yellow', 15000.00, '/assets/drink_3.png'),
+    ('RedBull', 20000.00, '/assets/drink_4.png'),
+    ('7-up', 15000.00, '/assets/drink_5.png'),
+    ('Milk', 20000.00, '/assets/drink_6.png'),
+    ('ChocoLEAN', 30000.00, '/assets/drink_7.png'),
+    ('Goat Kefir S', 100000.00, '/assets/drink_8.png'),
+    ('Man''s Milk', 500000.00, '/assets/drink_9.png');
 GO
 
 -- Insert data into Foods table
 INSERT INTO Foods
-    (name, price)
+    (name, price, ImageLink)
 VALUES
-    ('Rice', 5000.00),
-    ('Fried Rice with egg', 20000.00),
-    ('Rice with chicken', 30000.00),
-    ('Rice with beef', 30000.00),
-    ('Noodle', 10000.00),
-    ('Noodle with 2 eggs', 20000.00),
-    ('Chicken Noodle', 30000.00),
-    ('Beef Noodle', 30000.00),
-    ('50kg (Oysters)', 5000000.00);
+    ('Rice', 5000.00, '/assets/food_1.png'),
+    ('Fried Rice with egg', 20000.00, '/assets/food_2.png'),
+    ('Rice with chicken', 30000.00, '/assets/food_3.png'),
+    ('Rice with beef', 30000.00, '/assets/food_4.png'),
+    ('Noodle', 10000.00, '/assets/food_5.png'),
+    ('Noodle with 2 eggs', 20000.00, '/assets/food_6.png'),
+    ('Chicken Noodle', 30000.00, '/assets/food_7.png'),
+    ('Beef Noodle', 30000.00, '/assets/food_8.png'),
+    ('50kg (Oysters)', 5000000.00, '/assets/food_9.png');
 GO
 
 -- Insert data into Games_top_up table
@@ -121,15 +121,15 @@ GO
 
 -- Insert data into Top_up table
 INSERT INTO Top_up
-    (amount)
+    (name, price, ImageLink)
 VALUES
-    (10000.00),
-    (19000.00),
-    (58000.00),
-    (117000.00),
-    (236000.00),
-    (355000.00),
-    (500000.00);
+    ('1 HOUR', 10000.00, '/assets/money_1.png'),
+    ('2 HOURS', 19000.00, '/assets/money_1.png'),
+    ('6 HOURS', 58000.00, '/assets/money_1.png'),
+    ('12 HOURS', 117000.00, '/assets/money_1.png'),
+    ('24 HOURS', 236000.00, '/assets/money_1.png'),
+    ('36 HOURS', 355000.00, '/assets/money_1.png'),
+    ('48 HOURS', 500000.00, '/assets/money_1.png');
 GO
 
 

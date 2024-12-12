@@ -26,11 +26,21 @@ sql.connect(dbConfig, (err) => {
 
 app.use(express.static(path.join(__dirname, '../public')));
 
-// Import the game top-ups routes
+// Import and use the game top-ups routes
 const gameTopUpsRoutes = require('./routes/gameTopUpsRoutes');
-
-// Use the route at /api/game-topups
 app.use('/api/game-topups', gameTopUpsRoutes);
+
+// Import and use the top-ups routes
+const topUpsRoutes = require('./routes/topUpsRoutes');
+app.use('/api/topups', topUpsRoutes);
+
+// Import and use the drinks routes
+const drinksRoutes = require('./routes/drinksRoutes');
+app.use('/api/drinks', drinksRoutes);
+
+// Import and use the foods routes
+const foodsRoutes = require('./routes/foodsRoutes');
+app.use('/api/foods', foodsRoutes);
 
 const server = app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
