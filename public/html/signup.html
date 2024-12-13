@@ -10,25 +10,24 @@
 </head>
 
 <body>
-
     <div class="container">
         <div class="signup-section">
-            <header><a href="signup.html">Create Account</a></header>
-            <div class="separator">
-                <div class="line"></div>
-                <p>Or</p>
-                <div class="line"></div>
-            </div>
-            <form id="loginForm">
+            <header>Signup</header>
+            <form id="signupForm">
+                <input type="text" id="fullname" placeholder="Full Name" required>
                 <input type="text" id="username" placeholder="Username" required>
                 <input type="password" id="password" placeholder="Password" required>
-                <button type="submit" class="btn">Login</button>
+                <input type="password" id="password" placeholder="Password Confirmation" required>
+                <button type="submit" class="btn">Create Account</button>
             </form>
+            <div class="separator">
+                <div class="line"></div>
+            </div>
+            <header><a href="login.html">Return to Login</a></header>
         </div>
     </div>
 
-
-    <script src="../js/fetchLogin.js"></script>
+    <script src="../js/fetchSignup.js"></script>
 </body>
 
 </html>
