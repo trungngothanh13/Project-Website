@@ -1,3 +1,6 @@
+// Handle item modifying in cart (Orders, orderDetails)
+// Currently adding drinks to cart and deleting drinks from cart
+
 const express = require('express');
 const router = express.Router();
 const sql = require('mssql');
@@ -42,6 +45,15 @@ router.post('/', async (req, res) => {
         return res.status(404).json({ error: 'Item not found in Drinks table' });
       }
       pricePerItem = priceResult.recordset[0].price;
+    } 
+    else if (item_type === 'Food') {
+      const priceResult = await request
+        .input('item_id', sql.Int, item_id)
+        .query(`SELECT price FROM Foods WHERE id = @item_id`);
+      if (priceResult.recordset.length === 0) {
+        return res.status(404).json({ error: 'Item not found in Foods table' });
+      }
+      pricePerItem = priceResult.recordset[0].price;
     } else {
       return res.status(400).json({ error: 'Unsupported item_type currently. Only "Drink" is supported.' });
     }
@@ -63,6 +75,31 @@ router.post('/', async (req, res) => {
     res.json({ success: true, message: 'Item added to cart', order_id });
   } catch (error) {
     console.error('Error adding item to cart:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+// DELETE route to remove an item from the cart
+router.delete('/:detail_id', async (req, res) => {
+  const { detail_id } = req.params;
+
+  if (!detail_id) {
+    return res.status(400).json({ error: 'detail_id is required' });
+  }
+
+  try {
+    const request = new sql.Request();
+    await request
+      .input('detail_id', sql.Int, detail_id)
+      .query(`
+        DELETE FROM OrderDetails
+        WHERE detail_id = @detail_id
+          AND status = 'In-cart'
+      `);
+
+    res.json({ success: true, message: 'Item removed from cart successfully.' });
+  } catch (error) {
+    console.error('Error deleting item from cart:', error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });

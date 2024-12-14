@@ -55,6 +55,53 @@ document.addEventListener('DOMContentLoaded', async () => {
       tableBody.appendChild(row);
     });
 
+    // Add event listener for trash buttons
+    document.querySelectorAll('.bx-trash').forEach(button => {
+      button.addEventListener('click', async (event) => {
+        const detail_id = event.target.getAttribute('data-detail-id');
+        if (!detail_id) return;
+
+        if (!confirm('Are you sure you want to delete this item?')) return;
+
+        try {
+          const deleteResponse = await fetch(`/api/cart/${detail_id}`, {
+            method: 'DELETE',
+          });
+
+          const deleteData = await deleteResponse.json();
+          if (deleteResponse.ok) {
+            alert(deleteData.message);
+
+            // Refresh the items list
+            event.target.closest('tr').remove();
+
+            // Optionally, recalculate totals
+            const remainingItems = Array.from(document.querySelectorAll('.checkout-items tbody tr'));
+            let subtotal = 0;
+
+            remainingItems.forEach(row => {
+              const totalCell = row.querySelector('td:nth-of-type(4)').textContent.replace('d', '');
+              subtotal += parseFloat(totalCell) || 0;
+            });
+
+            const tax = subtotal * 0.1;
+            const grandTotal = subtotal + tax;
+
+            // Update totals in the order summary
+            const summaryItems = document.querySelectorAll('.summary-item span:nth-of-type(2)');
+            summaryItems[0].textContent = `${subtotal}d`; // Subtotal
+            summaryItems[1].textContent = `${tax}d`; // Tax
+            document.querySelector('.summary-item.total span:nth-of-type(2)').textContent = `${grandTotal}d`; // Total
+          } else {
+            alert(deleteData.message || 'Failed to delete the item.');
+          }
+        } catch (error) {
+          console.error('Error deleting item:', error);
+          alert('An error occurred while deleting the item.');
+        }
+      });
+    });
+
     // Calculate totals
     const subtotal = items.reduce((acc, item) => acc + item.total_price, 0);
     const tax = subtotal * 0.1;
