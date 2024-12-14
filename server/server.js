@@ -53,6 +53,23 @@ app.use('/api/drinks', drinksRoutes);
 const foodsRoutes = require('./routes/foodsRoutes');
 app.use('/api/foods', foodsRoutes);
 
+// Import and use the add to cart routes
+const cartRoutes = require('./routes/cartRoutes');
+app.use('/api/cart', cartRoutes);
+
+// Import and use the finalize routes
+const finalizeRoutes = require('./routes/finalizeRoutes');
+app.use('/api/orders', finalizeRoutes);
+
+// Import and use the orders status routes
+const ordersStatusRoutes = require('./routes/ordersStatusRoutes');
+app.use('/api/orders', ordersStatusRoutes);
+
+// Import and use the ordered item routes
+const getOrderedItemsRoutes = require('./routes/getOrderedItemsRoutes');
+app.use('/api/orderedItems', getOrderedItemsRoutes);
+
+
 const server = app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });

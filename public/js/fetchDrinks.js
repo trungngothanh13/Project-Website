@@ -50,9 +50,38 @@ async function fetchDrinks() {
 
             const button = document.createElement('button');
             button.textContent = "Add to Cart";
-            button.addEventListener('click', () => {
+            button.addEventListener('click', async () => {
                 console.log(`Adding ${drink.name} to cart`);
+                
+                const user_id = localStorage.getItem('user_id');
+                if (!user_id) {
+                    alert('You must be logged in to add items to the cart.');
+                    return;
+                }
+
+                // Prepare request to add item to cart
+                const addToCartResponse = await fetch('/api/cart', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        customer_id: user_id,
+                        item_id: drink.id,
+                        item_type: 'Drink',
+                        quantity: 1
+                    })
+                });
+
+                if (addToCartResponse.ok) {
+                    const result = await addToCartResponse.json();
+                    console.log(result);
+                    alert(`Added ${drink.name} to your cart successfully!`);
+                } else {
+                    const errorData = await addToCartResponse.json();
+                    console.error('Error adding to cart:', errorData);
+                    alert('Failed to add to cart.');
+                }
             });
+
 
             productItem.appendChild(img);
             productItem.appendChild(title);

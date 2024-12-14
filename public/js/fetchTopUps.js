@@ -51,9 +51,36 @@ async function fetchTopUps() {
 
             const button = document.createElement('button');
             button.textContent = "Add to Cart";
-            button.addEventListener('click', () => {
-                // Handle add to cart logic here
+            button.addEventListener('click', async () => {
                 console.log(`Adding ${topUp.name} to cart`);
+
+                const user_id = localStorage.getItem('user_id');
+                if (!user_id) {
+                    alert('You must be logged in to add items to the cart.');
+                    return;
+                }
+
+                // Prepare request to add item to cart as 'Top_up'
+                const addToCartResponse = await fetch('/api/cart', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        customer_id: user_id,
+                        item_id: topUp.id,
+                        item_type: 'Top_up',
+                        quantity: 1
+                    })
+                });
+
+                if (addToCartResponse.ok) {
+                    const result = await addToCartResponse.json();
+                    console.log(result);
+                    alert(`Added ${topUp.name} to your cart successfully!`);
+                } else {
+                    const errorData = await addToCartResponse.json();
+                    console.error('Error adding to cart:', errorData);
+                    alert('Failed to add to cart.');
+                }
             });
 
             productItem.appendChild(img);

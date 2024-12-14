@@ -34,26 +34,53 @@ async function fetchGameTopUps() {
         const productList = document.querySelector('.product-list');
         productList.innerHTML = ''; // Clear any existing HTML if present
 
-        data.forEach(topUp => {
+        data.forEach(gameTopUp => {
             const productItem = document.createElement('div');
             productItem.classList.add('product-item');
 
             const img = document.createElement('img');
-            img.src = topUp.ImageLink;  // Use the ImageLink from the fetched data
-            img.alt = topUp.option_name; // Set alt text to the option name
+            img.src = gameTopUp.ImageLink;  // Use the ImageLink from the fetched data
+            img.alt = gameTopUp.option_name; // Set alt text to the option name
 
             const title = document.createElement('h3');
-            title.textContent = topUp.option_name;
+            title.textContent = gameTopUp.option_name;
 
             const price = document.createElement('p');
             // Format price if needed, here as Vietnamese currency example:
-            price.textContent = topUp.price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+            price.textContent = gameTopUp.price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
 
             const button = document.createElement('button');
             button.textContent = "Add to Cart";
-            button.addEventListener('click', () => {
-                // Handle add to cart logic here
-                console.log(`Adding ${topUp.option_name} to cart`);
+            button.addEventListener('click', async () => {
+                console.log(`Adding ${gameTopUp.option_name} to cart`);
+                
+                const user_id = localStorage.getItem('user_id');
+                if (!user_id) {
+                    alert('You must be logged in to add items to the cart.');
+                    return;
+                }
+
+                // Prepare request to add item to cart
+                const addToCartResponse = await fetch('/api/cart', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        customer_id: user_id,
+                        item_id: gameTopUp.id,
+                        item_type: 'Games_Top_up',
+                        quantity: 1
+                    })
+                });
+
+                if (addToCartResponse.ok) {
+                    const result = await addToCartResponse.json();
+                    console.log(result);
+                    alert(`Added ${gameTopUp.option_name} to your cart successfully!`);
+                } else {
+                    const errorData = await addToCartResponse.json();
+                    console.error('Error adding to cart:', errorData);
+                    alert('Failed to add to cart.');
+                }
             });
 
             productItem.appendChild(img);

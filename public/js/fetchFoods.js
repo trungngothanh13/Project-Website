@@ -33,25 +33,53 @@ async function fetchFoods() {
         const productList = document.querySelector('.product-list');
         productList.innerHTML = ''; // Clear any existing HTML if present
 
-        data.forEach(drink => {
+        data.forEach(food => {
             const productItem = document.createElement('div');
             productItem.classList.add('product-item');
 
             const img = document.createElement('img');
-            img.src = drink.ImageLink;  // Use the ImageLink from the fetched data
-            img.alt = drink.name;       // Alt text based on the drink's name
+            img.src = food.ImageLink;  // Use the ImageLink from the fetched data
+            img.alt = food.name;       // Alt text based on the food's name
 
             const title = document.createElement('h3');
-            title.textContent = drink.name;
+            title.textContent = food.name;
 
             const price = document.createElement('p');
             // Format the price if needed:
-            price.textContent = drink.price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+            price.textContent = food.price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
 
             const button = document.createElement('button');
             button.textContent = "Add to Cart";
-            button.addEventListener('click', () => {
-                console.log(`Adding ${drink.name} to cart`);
+            button.addEventListener('click', async () => {
+                console.log(`Adding ${food.name} to cart`);
+
+                const user_id = localStorage.getItem('user_id');
+                if (!user_id) {
+                    alert('You must be logged in to add items to the cart.');
+                    return;
+                }
+
+                // Prepare request to add item to cart as 'Food'
+                const addToCartResponse = await fetch('/api/cart', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        customer_id: user_id,
+                        item_id: food.id,
+                        item_type: 'Food',
+                        quantity: 1
+                    })
+                });
+
+                if (addToCartResponse.ok) {
+                    const result = await addToCartResponse.json();
+                    console.log(result);
+                    alert(`Added ${food.name} to your cart successfully!`);
+                } else {
+                    const errorData = await addToCartResponse.json();
+                    console.error('Error adding to cart:', errorData);
+                    alert('Failed to add to cart.');
+                }
             });
 
             productItem.appendChild(img);
