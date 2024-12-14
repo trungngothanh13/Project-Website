@@ -1,10 +1,14 @@
 document.addEventListener('DOMContentLoaded', () => {
     const ordersTable = document.getElementById('orders-table');
 
-    // Fetch and populate pending orders
+    // Fetch pending orders
     async function fetchPendingOrders() {
         try {
             const response = await fetch('/api/adminOrderControl/pending');
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
             const orders = await response.json();
 
             // Clear the table
@@ -26,14 +30,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 ordersTable.appendChild(row);
             });
 
-            // Attach click event listeners to buttons
             attachEventListeners();
         } catch (error) {
             console.error('Error fetching pending orders:', error);
         }
     }
 
-    // Update the status of an order to 'Served'
+    // Handle status update
     async function updateOrderStatus(detailId) {
         try {
             const response = await fetch('/api/adminOrderControl/update-status', {
@@ -43,7 +46,8 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             if (response.ok) {
-                console.log(`Order with detail_id ${detailId} updated to Served.`);
+                // Refresh pending orders after successful update
+                fetchPendingOrders();
             } else {
                 const error = await response.json();
                 console.error('Failed to update order status:', error);
@@ -55,30 +59,17 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Attach event listeners to buttons
+    // Attach event listeners to status buttons
     function attachEventListeners() {
         const statusButtons = document.querySelectorAll('.status-btn');
         statusButtons.forEach(button => {
-            button.addEventListener('click', (event) => {
-                const buttonElement = event.target;
-                const detailId = buttonElement.dataset.detailId;
-
-                // Update the status visually
-                const parentTd = buttonElement.parentElement;
-                const statusSpan = parentTd.querySelector('.status');
-                statusSpan.textContent = 'Served';
-                statusSpan.classList.remove('pending');
-                statusSpan.classList.add('served');
-
-                // Remove the button after status update
-                buttonElement.remove();
-
-                // Send the status update request to the backend
+            button.addEventListener('click', () => {
+                const detailId = button.dataset.detailId;
                 updateOrderStatus(detailId);
             });
         });
     }
 
-    // Fetch pending orders on page load
+    // Initial fetch of pending orders
     fetchPendingOrders();
 });

@@ -503,18 +503,36 @@ body {
     color: var(--light);
     border-radius: 20px;
     font-weight: 700;
+    display: inline-block;
+    text-align: center;
 }
 
-.content main .bottom-data .orders table tr td .status.completed {
+.content main .bottom-data .orders table tr td .status.served {
     background: var(--success);
-}
-
-.content main .bottom-data .orders table tr td .status.process {
-    background: var(--primary);
 }
 
 .content main .bottom-data .orders table tr td .status.pending {
     background: var(--warning);
+}
+
+.content main .bottom-data .orders table tr td .status.canceled {
+    background: var(--danger);
+}
+
+.status-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 6px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 10px;
+    font-weight: 400;
+    margin-top: 5px;
+}
+
+.status-btn:hover {
+    background-color: #0056b3;
 }
 
 .content main .bottom-data .reminders {
