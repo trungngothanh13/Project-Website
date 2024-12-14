@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="../css/style_admin.css">
+    <link rel="stylesheet" href="/public/css/style_admin.css">
     <title>CYBER GAMING</title>
 </head>
 
@@ -22,7 +22,7 @@
             <li><a href="#"><i class='bx bx-analyse'></i>Analytics</a></li>
             <li><a href="#"><i class='bx bx-message-square-dots'></i>Chat</a></li>
             <li><a href="#"><i class='bx bx-group'></i>Users</a></li>
-            <li class="active"><a href="./admin_process_order.html"><i class='bx bx-analyse'></i>Processing Orders</a>
+            <li><a href="/public/html/admin_process_order.html"><i class='bx bx-analyse'></i>Processing Orders</a>
             <li>
                 <a href="#" class="toggle-submenu">
                     <i class='bx bx-analyse'></i>Management Products
@@ -76,14 +76,8 @@
         <main>
             <div class="header">
                 <div class="left">
-                    <h1>Dashboard</h1>
-                    <ul class="breadcrumb">
-                        <li><a href="#">
-                                Analytics
-                            </a></li>
-                        /
-                        <li><a href="#" class="active">Shop</a></li>
-                    </ul>
+                    <h1>Management</h1>
+
                 </div>
                 <a href="#" class="report">
                     <i class='bx bx-cloud-download'></i>
@@ -94,68 +88,69 @@
 
 
             <div class="bottom-data">
-                <div class="orders">
+                <div class="product-list">
                     <div class="header">
-                        <i class='bx bx-receipt'></i>
-                        <h3>Recent Orders</h3>
-                        <i class='bx bx-filter'></i>
-                        <i class='bx bx-search'></i>
+                        <i class='bx bx-list-ul'></i>
+                        <h3>Drink List</h3>
+                        <button class="add-button">Add</button>
                     </div>
                     <table>
                         <thead>
                             <tr>
-                                <th>User</th>
-                                <th>ID Product</th>
-                                <th>Product Type</th>
-                                <th>Order Date</th>
-                                <th>Status</th>
+                                <th>Product ID</th>
+                                <th>Product Name</th>
+                                <th>Price</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
+                                <td>1</td>
+                                <td>Coffee</td>
+                                <td>$1.00</td>
                                 <td>
-                                    <img src="images/profile-1.jpg">
-                                    <p>John Doe</p>
+                                    <button class="edit-button">Edit</button>
+                                    <button class="delete-button">Delete</button>
                                 </td>
-                                <td>12345</td>
-                                <td>Food</td>
-                                <td>14-08-2023</td>
-                                <td><span class="status completed">Completed</span></td>
                             </tr>
                             <tr>
+                                <td>2</td>
+                                <td>Sting</td>
+                                <td>$0.50</td>
                                 <td>
-                                    <img src="images/profile-1.jpg">
-                                    <p>John Doe</p>
+                                    <button class="edit-button">Edit</button>
+                                    <button class="delete-button">Delete</button>
                                 </td>
-                                <td>67890</td>
-                                <td>Drink</td>
-                                <td>14-08-2023</td>
-                                <td><span class="status pending">Pending</span></td>
                             </tr>
                             <tr>
+                                <td>3</td>
+                                <td>Orange</td>
+                                <td>$0.80</td>
                                 <td>
-                                    <img src="images/profile-1.jpg">
-                                    <p>John Doe</p>
+                                    <button class="edit-button">Edit</button>
+                                    <button class="delete-button">Delete</button>
                                 </td>
-                                <td>11223</td>
-                                <td>Top Up</td>
-                                <td>14-08-2023</td>
-                                <td><span class="status process">Processing</span></td>
                             </tr>
                         </tbody>
                     </table>
-
-
                 </div>
-
-
             </div>
+
+            <link rel="stylesheet" href="styles.css">
+
+
+            <link rel="stylesheet" href="styles.css">
+
+            <link rel="stylesheet" href="styles.css">
+
+
+
 
         </main>
 
     </div>
 
-    <script src="../js/admin.js"></script>
+    <script src="/public/js/admin.js"></script>
 </body>
 
 </html>

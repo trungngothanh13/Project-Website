@@ -54,3 +54,15 @@ toggler.addEventListener('change', function () {
         document.body.classList.remove('dark');
     }
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+    // Lấy phần tử nút Management Products
+    const toggleSubmenu = document.querySelector('.toggle-submenu');
+    const submenu = document.querySelector('.submenu');
+
+    // Thêm sự kiện click
+    toggleSubmenu.addEventListener('click', function (e) {
+        e.preventDefault(); // Ngăn chặn hành vi mặc định
+        submenu.classList.toggle('show'); // Bật/tắt lớp 'show' để hiển thị/ẩn submenu
+    });
+});
