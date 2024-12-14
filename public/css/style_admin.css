@@ -463,23 +463,23 @@ body {
     border-collapse: collapse;
 }
 
-.content main .bottom-data .orders table th {
+/* .content main .bottom-data .orders table th {
     padding-bottom: 12px;
     font-size: 13px;
     text-align: left;
     border-bottom: 1px solid var(--grey);
-}
+} */
 
-.content main .bottom-data .orders table td {
+/* .content main .bottom-data .orders table td {
     padding: 16px 0;
-}
+} */
 
-.content main .bottom-data .orders table tr td:first-child {
+/* .content main .bottom-data .orders table tr td:first-child {
     display: flex;
     align-items: center;
     grid-gap: 12px;
     padding-left: 6px;
-}
+} */
 
 .content main .bottom-data .orders table td img {
     width: 36px;
