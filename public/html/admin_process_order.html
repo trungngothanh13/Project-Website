@@ -18,7 +18,7 @@
             <div class="logo-name"><span>CYBER</span>GAMING</div>
         </a>
         <ul class="side-menu">
-            <li><a href="#"><i class='bx bxs-dashboard'></i>Dashboard</a></li>
+            <li><a href="./admin.html"><i class='bx bxs-dashboard'></i>Dashboard</a></li>
             <li><a href="#"><i class='bx bx-analyse'></i>Analytics</a></li>
             <li><a href="#"><i class='bx bx-message-square-dots'></i>Chat</a></li>
             <li><a href="#"><i class='bx bx-group'></i>Users</a></li>
@@ -98,51 +98,41 @@
                                 <th>Status</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="orders-table">
+                            <!-- Orders will be dynamically populated here -->
                             <tr>
                                 <td>
-                                    <img src="images/profile-1.jpg">
+                                    <img src="/public/assets/ad1.jpg">
                                     <p>John Doe</p>
                                 </td>
                                 <td>12345</td>
                                 <td>Food</td>
                                 <td>14-08-2023</td>
-                                <td><span class="status completed">Completed</span></td>
+                                <td>
+                                    <span class="status served">Served</span>
+                                </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <img src="images/profile-1.jpg">
+                                    <img src="/public/assets/ad1.jpg">
                                     <p>John Doe</p>
                                 </td>
                                 <td>67890</td>
                                 <td>Drink</td>
                                 <td>14-08-2023</td>
-                                <td><span class="status pending">Pending</span></td>
-                            </tr>
-                            <tr>
                                 <td>
-                                    <img src="images/profile-1.jpg">
-                                    <p>John Doe</p>
+                                    <span class="status pending">Pending</span>
+                                    <button class="status-btn">Mark as Served</button>
                                 </td>
-                                <td>11223</td>
-                                <td>Top Up</td>
-                                <td>14-08-2023</td>
-                                <td><span class="status process">Processing</span></td>
                             </tr>
                         </tbody>
                     </table>
-
-
                 </div>
-
-
             </div>
-
         </main>
-
     </div>
 
+    <script src="../js/adminUpdateOrderStatus.js"></script>
     <script src="../js/admin.js"></script>
 </body>
-
 </html>

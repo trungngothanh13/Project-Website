@@ -29,6 +29,8 @@ app.use(express.static(path.join(__dirname, '../public')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// CUSTOMER
+
 // Import and use the login routes
 const loginRoutes = require('./routes/loginRoutes');
 app.use('/api/login', loginRoutes);
@@ -68,6 +70,13 @@ app.use('/api/orders', ordersStatusRoutes);
 // Import and use the ordered item routes
 const getOrderedItemsRoutes = require('./routes/getOrderedItemsRoutes');
 app.use('/api/orderedItems', getOrderedItemsRoutes);
+
+
+// ADMIN
+
+// Import and use the order control routes
+const adminOrderControlRoutes = require('./routes/adminOrderControlRoutes');
+app.use('/api/adminOrderControl', adminOrderControlRoutes);
 
 
 const server = app.listen(PORT, () => {
