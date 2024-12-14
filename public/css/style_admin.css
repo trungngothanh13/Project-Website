@@ -316,6 +316,7 @@ body {
 }
 
 .content main .header {
+    margin-left: 50px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -771,7 +772,7 @@ table td {
     top: 0;
     left: 0;
     background: var(--light);
-    width: 230px;
+    width: 270px;
     height: 100%;
     z-index: 2000;
     overflow-x: hidden;
