@@ -132,6 +132,27 @@ VALUES
     ('48 HOURS', 500000.00, '/assets/money_1.png');
 GO
 
+INSERT INTO Orders
+    (customer_id, order_date, total_price)
+VALUES
+    (2, '2024-04-01 10:30:00', 0.00),
+    (3, '2024-04-02 14:15:00', 0.00),
+    (4, '2024-04-03 18:45:00', 0.00);
+
+INSERT INTO OrderDetails
+    (order_id, item_type, item_id, quantity, price_per_item)
+VALUES
+    (2, 'Food', 1, 2, 599),
+    (2, 'Drink', 4, 3, 199),
+    (2, 'Top_up', 1, 1, 1000);
+
+INSERT INTO OrderDetails
+    (order_id, item_type, item_id, quantity, price_per_item)
+VALUES
+    (3, 'Food', 3, 3, 450),
+    (3, 'Drink', 7, 5, 99),
+    (3, 'Top_up', 3, 2, 5000),
+    (3, 'Top_up', 6, 1, 1500);
 
 SELECT *
 FROM Admins
@@ -161,5 +182,24 @@ SELECT *
 FROM Top_up
 SELECT *
 FROM Games_Top_up
+SELECT *
+FROM Orders;
+SELECT *
+FROM OrderDetails;
+
 
 USE CyberGaming;
+
+
+DROP TABLE OrderDetails
+DROP TABLE Orders
+
+SELECT *
+FROM OrderDetails
+WHERE item_type = 'Drink';
+SELECT *
+FROM Drinks;
+
+SELECT *
+FROM Drinks;
+

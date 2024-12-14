@@ -205,6 +205,137 @@ CREATE TABLE Games_top_up
 );
 GO
 
-DROP TABLE Top_up
+-- Table for managing orders
+CREATE TABLE Orders
+(
+    order_id INT PRIMARY KEY IDENTITY(1,1),
+    customer_id INT NOT NULL,
+    order_date DATETIME DEFAULT GETDATE(),
+    total_price DECIMAL(10, 2) NOT NULL DEFAULT 0.00,
+    FOREIGN KEY (customer_id) REFERENCES Customers(customer_id)
+);
+GO
+
+ALTER TABLE Orders
+ADD is_locked BIT NOT NULL DEFAULT 0;
+GO
+
+-- Table for managing order details
+CREATE TABLE OrderDetails
+(
+    detail_id INT PRIMARY KEY IDENTITY(1,1),
+    order_id INT NOT NULL,
+    item_type VARCHAR(20) NOT NULL CHECK (item_type IN ('Food', 'Drink', 'Top_up', 'Games_Top_up')),
+    item_id INT NOT NULL,
+    quantity INT NOT NULL CHECK (quantity > 0),
+    price_per_item DECIMAL(10, 2) NOT NULL,
+    total_price AS (quantity * price_per_item) PERSISTED,
+    FOREIGN KEY (order_id) REFERENCES Orders(order_id)
+);
+GO
+
+ALTER TABLE OrderDetails
+ADD status VARCHAR(20) NOT NULL DEFAULT 'In-cart'
+CHECK (status IN ('In-cart', 'Pending', 'Served'));
+
+-- Trigger After Insert on OrderDetails
+CREATE OR ALTER TRIGGER trg_OrderDetails_Insert
+ON OrderDetails
+AFTER INSERT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    UPDATE Orders
+    SET total_price = (
+        SELECT ISNULL(SUM(total_price), 0)
+    FROM OrderDetails
+    WHERE OrderDetails.order_id = Orders.order_id
+        AND OrderDetails.status = 'In-cart'
+    )
+    WHERE Orders.order_id IN (
+        SELECT DISTINCT order_id
+    FROM inserted
+    );
+END;
+GO
+
+-- Trigger After Update on OrderDetails
+CREATE OR ALTER TRIGGER trg_OrderDetails_Update
+ON OrderDetails
+AFTER UPDATE
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    UPDATE Orders
+    SET total_price = (
+        SELECT ISNULL(SUM(total_price), 0)
+    FROM OrderDetails
+    WHERE OrderDetails.order_id = Orders.order_id
+        AND OrderDetails.status = 'In-cart'
+    )
+    WHERE Orders.order_id IN (
+        SELECT DISTINCT order_id
+        FROM inserted
+    UNION
+        SELECT DISTINCT order_id
+        FROM deleted
+    );
+END;
+GO
+
+
+-- Trigger After Delete on OrderDetails
+CREATE OR ALTER TRIGGER trg_OrderDetails_Delete
+ON OrderDetails
+AFTER DELETE
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    UPDATE Orders
+    SET total_price = (
+        SELECT ISNULL(SUM(total_price), 0)
+    FROM OrderDetails
+    WHERE OrderDetails.order_id = Orders.order_id
+        AND OrderDetails.status = 'In-cart'
+    )
+    WHERE Orders.order_id IN (
+        SELECT DISTINCT order_id
+    FROM deleted
+    );
+END;
+GO
+
+
+-- All orders in Served leads to update is_locked to 0
+CREATE OR ALTER TRIGGER trg_UpdateOrderLockStatusOnAllServed
+ON OrderDetails
+AFTER UPDATE
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- For all orders affected by this update, check if all items are now 'Served'
+    UPDATE o
+    SET o.is_locked = 0
+    FROM Orders o
+        INNER JOIN (
+        -- Get distinct order_ids from the updated rows
+        SELECT DISTINCT i.order_id
+        FROM inserted i
+    ) as updatedOrders ON o.order_id = updatedOrders.order_id
+    WHERE NOT EXISTS (
+        -- If there's any item in the order that is not 'Served',
+        -- then we do not unlock the order.
+        SELECT 1
+    FROM OrderDetails od
+    WHERE od.order_id = o.order_id
+        AND od.status <> 'Served'
+    );
+END;
+GO
+
 
 USE CyberGaming;

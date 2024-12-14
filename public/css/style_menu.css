@@ -395,6 +395,7 @@ body {
     padding: 20px 36px 20px 0;
 }
 
+/* Profile Section */
 .container .right-section .profile {
     display: flex;
     align-items: center;
@@ -403,28 +404,42 @@ body {
     margin-bottom: 40px;
 }
 
-.container .right-section .profile .user {
-    display: flex;
-}
-
-.container .right-section .profile .user .left {
+/* Common Styles for Profile Items (.checkout and .user) */
+.container .right-section .profile .profile-item {
     display: flex;
     align-items: center;
-    background: #32323d;
-    padding: 6px;
-    border-radius: 6px 0 0 6px;
+    background-color: #32323d;
+    border-radius: 6px;
+    overflow: hidden;
+    transition: background-color 0.3s ease;
 }
 
-.container .right-section .profile .user .left img {
+.container .right-section .profile .profile-item .left {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #25252d;
+    padding: 6px;
+    position: relative; /* For badge positioning if needed */
+}
+
+.container .right-section .profile .profile-item .left img {
     width: 30px;
     height: 30px;
+    object-fit: cover;
+    border-radius: 50%;
 }
 
-.container .right-section .profile .user .right {
+.container .right-section .profile .profile-item .right {
     background-color: #25252d;
-    border-radius: 0 6px 6px 0;
     padding: 13px;
     color: #fff;
+    font-weight: bold;
+    white-space: nowrap; /* Prevent text from wrapping */
+}
+
+.container .right-section .profile .profile-item:hover { /* Hover Effect */
+    background-color: #ffffff;
 }
 
 .container .right-section .music-player {

@@ -30,7 +30,13 @@ router.post('/', async (req, res) => { // Changed from '/api/login' to '/'
     // Determine role
     // If there is a 'role' column in admins table that defines admin or not:
     const role = user.role ? 'admin' : 'customer';
-    res.json({ message: 'Login successful', role });
+    const user_id = role === 'admin' ? user.admin_id : user.customer_id;
+    
+    res.json({
+      message: 'Login successful',
+      role: role,
+      user_id: user_id
+    });
   } catch (err) {
     console.error('Error during login:', err);
     res.status(500).json({message: 'Internal Server Error'});

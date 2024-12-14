@@ -12,15 +12,18 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
 
   const data = await response.json();
   if (response.ok) {
-    alert('Login successful! You are logged in as ' + data.role);
+    // Store the IDs and role locally
+    alert('Login successful! You are logged in as ' + data.role + ' with ID: ' + data.user_id);
+    localStorage.setItem('role', data.role);
+    localStorage.setItem('user_id', data.user_id);
+  
     if (data.role === 'admin') {
-      localStorage.setItem('role', 'admin');
       window.location.href = 'admin.html';
     } else {
-      localStorage.setItem('role', 'customer');
       window.location.href = 'cus.html';
     }
   } else {
     alert('Error: ' + data.message);
   }
+
 });
