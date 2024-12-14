@@ -32,6 +32,7 @@ router.get('/', async (req, res) => {
     const detailsRequest = new sql.Request();
     const detailsResult = await detailsRequest
       .input('order_id', sql.Int, order_id)
+      .input('customer_id', sql.Int, customer_id) // Add this line
       .query(`
         SELECT 
             od.detail_id,
@@ -40,7 +41,6 @@ router.get('/', async (req, res) => {
             od.quantity,
             od.price_per_item,
             od.total_price,
-            od.status,
             d.name AS DrinkName,
             d.ImageLink AS DrinkImageLink,
             f.name AS FoodName,
@@ -55,8 +55,9 @@ router.get('/', async (req, res) => {
         LEFT JOIN Foods f ON f.id = od.item_id AND od.item_type = 'Food'
         LEFT JOIN Top_up t ON t.id = od.item_id AND od.item_type = 'Top_up'
         LEFT JOIN Games_top_up g ON g.id = od.item_id AND od.item_type = 'Games_Top_up'
-        WHERE od.order_id = @order_id AND od.status = '${statusToFetch}';
+        WHERE o.customer_id = @customer_id AND od.status IN ('In-cart', 'Pending')
       `);
+        
 
     res.json(detailsResult.recordset);
   } catch (error) {

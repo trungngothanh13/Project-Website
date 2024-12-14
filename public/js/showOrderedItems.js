@@ -25,16 +25,16 @@ document.addEventListener('DOMContentLoaded', async () => {
       // Determine the display name and image
       if (item.item_type === 'Drink' && item.DrinkName) {
         itemName = item.DrinkName;
-        if (item.DrinkImageLink) itemImage = item.DrinkImageLink;
+      if (item.DrinkImageLink) itemImage = item.DrinkImageLink;
       } else if (item.item_type === 'Food' && item.FoodName) {
-        itemName = item.FoodName;
-        if (item.FoodImageLink) itemImage = item.FoodImageLink;
+          itemName = item.FoodName;
+          if (item.FoodImageLink) itemImage = item.FoodImageLink;
       } else if (item.item_type === 'Top_up' && item.TopUpName) {
-        itemName = item.TopUpName;
-        if (item.TopUpImageLink) itemImage = item.TopUpImageLink;
+          itemName = item.TopUpName;
+          if (item.TopUpImageLink) itemImage = item.TopUpImageLink;
       } else if (item.item_type === 'Games_Top_up' && item.GameTopUpName) {
-        itemName = item.GameTopUpName;
-        if (item.GameTopUpImageLink) itemImage = item.GameTopUpImageLink;
+          itemName = item.GameTopUpName;
+          if (item.GameTopUpImageLink) itemImage = item.GameTopUpImageLink;
       }
 
       const isPending = item.status === 'Pending';

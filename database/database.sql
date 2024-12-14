@@ -339,3 +339,10 @@ GO
 
 
 USE CyberGaming;
+
+SELECT
+    c.name AS ConstraintName,
+    cc.definition AS CheckClause
+FROM sys.check_constraints cc
+    INNER JOIN sys.objects c ON cc.object_id = c.object_id
+WHERE cc.parent_object_id = OBJECT_ID('OrderDetails');

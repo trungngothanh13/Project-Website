@@ -1,5 +1,5 @@
 // Handle item modifying in cart (Orders, orderDetails)
-// Currently adding drinks to cart and deleting drinks from cart
+// Currently adding and deleting drinks, foods, top-ups, games from cart
 
 const express = require('express');
 const router = express.Router();
@@ -54,8 +54,26 @@ router.post('/', async (req, res) => {
         return res.status(404).json({ error: 'Item not found in Foods table' });
       }
       pricePerItem = priceResult.recordset[0].price;
-    } else {
-      return res.status(400).json({ error: 'Unsupported item_type currently. Only "Drink" is supported.' });
+    }
+    else if (item_type === 'Games_Top_up') {
+      const priceResult = await request
+        .input('item_id', sql.Int, item_id)
+        .query(`SELECT price FROM Games_top_up WHERE id = @item_id`);
+      if (priceResult.recordset.length === 0) {
+        return res.status(404).json({ error: 'Item not found in Games_Top_up table' });
+      }
+      pricePerItem = priceResult.recordset[0].price;
+    } 
+    else if (item_type === 'Top_up') {
+      const priceResult = await request
+        .input('item_id', sql.Int, item_id)
+        .query(`SELECT price FROM Top_up WHERE id = @item_id`);
+      if (priceResult.recordset.length === 0) {
+        return res.status(404).json({ error: 'Item not found in Top_up table' });
+      }
+      pricePerItem = priceResult.recordset[0].price;
+    }else {
+      return res.status(400).json({ error: 'Unsupported item_type currently. Only "Drink", "Food", "Game_Top_up", "Top_up" is supported.' });
     }
 
     // 3. Insert the order detail. Use a new Request object again.
