@@ -14,9 +14,6 @@
     <div class="container">
         <aside class="sidebar">
             <div class="logo">
-                <button class="menu-btn" id="menu-close">
-                    <i class='bx bx-log-out-circle'></i>
-                </button>
                 <i class='bx bxs-face-mask'></i></i>
                 <a href="cus.html">CYPER GAMING</a>
             </div>
@@ -33,8 +30,15 @@
                         <a href="#">Search</a>
                     </li>
                     <li>
+                        <i class='bx bxs-heart'></i></i>
+                        <a href="#">Favorites</a>
+                    </li>
+                    <li>
                         <i class='bx bxs-wallet'></i></i>
                         <a href="#">Balance</a>
+                    </li>
+                    <li>
+                        <a href="login.html">Sign Out</a>
                     </li>
                 </ul>
             </div>
@@ -299,7 +303,7 @@
                         <img src="../assets/profile.png" alt="Profile">
                     </div>
                     <div class="right">
-                        <h5>Jhon Doe</h5>
+                        <h5 id="user-name">Jhon Doe</h5>
                     </div>
                 </div>
             </div>
@@ -394,7 +398,29 @@
 
     </div>
 
+    <!-- Script for displaying username correctly -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const userNameElement = document.getElementById('user-name');
+            const userName = localStorage.getItem('user_name');
+    
+            if (userName) {
+                userNameElement.textContent = userName;
+            } else {
+                userNameElement.textContent = 'Guest'; // Fallback if user_name is missing
+            }
+        });
+    </script>    
 
+    <!-- Log the LocalStorage for debugging -->
+    <script>
+        console.log('Local Storage:', {
+            role: localStorage.getItem('role'),
+            user_id: localStorage.getItem('user_id'),
+            user_name: localStorage.getItem('user_name'),
+        });
+    </script>
+    
     <script src="../js/main.js"></script>
 </body>
 

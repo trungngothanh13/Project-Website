@@ -38,6 +38,7 @@ body {
 }
 
 .container .sidebar {
+    width: 270px;
     height: 100vh;
     background-color: #18181d;
     padding: 20px 36px;

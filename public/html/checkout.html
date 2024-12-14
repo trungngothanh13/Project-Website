@@ -36,6 +36,9 @@
                         <i class='bx bxs-wallet'></i>
                         <a href="#">Balance</a>
                     </li>
+                    <li>
+                        <a href="login.html">Sign Out</a>
+                    </li>
                 </ul>
             </div>
 
@@ -148,12 +151,26 @@
                         <img src="../assets/profile.png" alt="Profile">
                     </div>
                     <div class="right">
-                        <h5>Jhon Doe</h5>
+                        <h5 id="user-name">Jhon Doe</h5>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Script for displaying username correctly -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const userNameElement = document.getElementById('user-name');
+            const userName = localStorage.getItem('user_name');
+    
+            if (userName) {
+                userNameElement.textContent = userName;
+            } else {
+                userNameElement.textContent = 'Guest'; // Fallback if user_name is missing
+            }
+        });
+    </script>  
 
     <script src="../js/finalizeOrders.js"></script>
     <script src="../js/checkoutStatus.js"></script>

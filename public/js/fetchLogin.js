@@ -16,7 +16,8 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
     alert('Login successful! You are logged in as ' + data.role + ' with ID: ' + data.user_id);
     localStorage.setItem('role', data.role);
     localStorage.setItem('user_id', data.user_id);
-  
+    localStorage.setItem('user_name', data.user_name);
+
     if (data.role === 'admin') {
       window.location.href = 'admin.html';
     } else {

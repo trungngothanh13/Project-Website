@@ -3,43 +3,50 @@ const sql = require('mssql');
 
 const router = express.Router();
 
-router.post('/', async (req, res) => { // Changed from '/api/login' to '/'
+async function findUser(username) {
+  // Look for user in Customers table
+  let result = await sql.query`SELECT * FROM Customers WHERE username = ${username}`;
+  if (result.recordset.length > 0) {
+    return { user: result.recordset[0], role: 'customer' };
+  }
+
+  // If not found, look for user in Admins table
+  result = await sql.query`SELECT * FROM Admins WHERE username = ${username}`;
+  if (result.recordset.length > 0) {
+    return { user: result.recordset[0], role: 'admin' };
+  }
+
+  return null; // User not found
+}
+
+router.post('/', async (req, res) => {
   const { username, password } = req.body;
 
   try {
-    // Check Customers Table
-    let result = await sql.query(`SELECT * FROM Customers WHERE username = '${username}'`);
-    let user = result.recordset[0];
+    const userDetails = await findUser(username);
 
-    // If user not found in Customers, check Admins Table
-    if (!user) {
-      result = await sql.query(`SELECT * FROM Admins WHERE username = '${username}'`);
-      user = result.recordset[0];
+    if (!userDetails) {
+      return res.status(400).json({ message: 'User not found' });
     }
 
-    if (!user) {
-      return res.status(400).json({message: 'User not found'});
+    const { user, role } = userDetails;
+
+    // Check password
+    if (password !== user.password) {
+      return res.status(400).json({ message: 'Invalid password' });
     }
 
-    // Check password validity
-    const isPasswordValid = password === user.password;  
-    if (!isPasswordValid) {
-      return res.status(400).json({message: 'Invalid password'});
-    }
-
-    // Determine role
-    // If there is a 'role' column in admins table that defines admin or not:
-    const role = user.role ? 'admin' : 'customer';
     const user_id = role === 'admin' ? user.admin_id : user.customer_id;
-    
+
     res.json({
       message: 'Login successful',
       role: role,
-      user_id: user_id
+      user_id: user_id,
+      user_name: user.username, // Use actual username from DB
     });
   } catch (err) {
     console.error('Error during login:', err);
-    res.status(500).json({message: 'Internal Server Error'});
+    res.status(500).json({ message: 'Internal Server Error' });
   }
 });
 
