@@ -170,7 +170,6 @@ body {
     color: var(--danger);
 }
 
-
 .content {
     position: relative;
     width: calc(100% - 230px);
@@ -736,7 +735,6 @@ body {
     align-items: center;
     justify-content: space-between;
     margin-bottom: 20px;
-    margin-left: 20px;
 }
 
 .header h3 {
@@ -773,7 +771,7 @@ table td {
     top: 0;
     left: 0;
     background: var(--light);
-    width: 270px;
+    width: 230px;
     height: 100%;
     z-index: 2000;
     overflow-x: hidden;
@@ -884,7 +882,10 @@ table td {
     justify-content: center;
 }
 
-
+.sidebar .side-menu li a.logout {
+    margin-top: 200px;
+    color: var(--danger);
+}
 
 .content {
     position: relative;
