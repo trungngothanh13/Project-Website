@@ -237,6 +237,7 @@ GO
 ALTER TABLE OrderDetails
 ADD status VARCHAR(20) NOT NULL DEFAULT 'In-cart'
 CHECK (status IN ('In-cart', 'Pending', 'Served'));
+GO
 
 -- Trigger After Insert on OrderDetails
 CREATE OR ALTER TRIGGER trg_OrderDetails_Insert
@@ -276,7 +277,7 @@ BEGIN
         AND OrderDetails.status = 'In-cart'
     )
     WHERE Orders.order_id IN (
-        SELECT DISTINCT order_id
+                SELECT DISTINCT order_id
         FROM inserted
     UNION
         SELECT DISTINCT order_id
