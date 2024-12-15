@@ -368,7 +368,7 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     grid-gap: 24px;
-    margin-top: 36px;
+    margin: 36px 20px 0px 20px;
 }
 
 .content main .insights li {
