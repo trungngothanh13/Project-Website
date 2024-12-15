@@ -194,15 +194,6 @@ USE CyberGaming;
 DROP TABLE OrderDetails
 DROP TABLE Orders
 
-SELECT *
-FROM OrderDetails
-WHERE item_type = 'Drink';
-SELECT *
-FROM Drinks;
-
-SELECT *
-FROM Drinks;
-
 
 INSERT INTO Drinks
     (name, price, ImageLink)
@@ -210,3 +201,7 @@ VALUES
     ('Coffee 2', 10000, '/assets/drink_coffee.png'),
     ('Sting 2', 5000, '/assets/drink_sting.png'),
     ('Orange Juice 2', 15000, '/assets/drink_orange_juice.png');
+
+
+SELECT id, option_name, price, ImageLink
+FROM Games_top_up;

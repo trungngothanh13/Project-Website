@@ -2,16 +2,9 @@ const express = require('express');
 const router = express.Router();
 const sql = require('mssql');
 
-// Assuming you have a connection pool or dbConfig already set up elsewhere
-// If not, you'll need to require or configure sql.ConnectionPool here again.
-
+// GET: Fetch all top-ups
 router.get('/', async (req, res) => {
   try {
-    // If using a global pool:
-    // const pool = await sql.connect(dbConfig);
-    // If using a pooled connection from server.js:
-    // const pool = await poolPromise; (assuming you've set this up)
-
     const request = new sql.Request();
     const result = await request.query('SELECT id, name, price, ImageLink FROM Top_up;');
     res.json(result.recordset);
@@ -20,5 +13,83 @@ router.get('/', async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 });
+
+// POST: Add a new top-up
+router.post('/', async (req, res) => {
+  const { name, price, ImageLink } = req.body;
+
+  if (!name || !price || !ImageLink) {
+    return res.status(400).json({ message: 'Name, price, and ImageLink are required.' });
+  }
+
+  try {
+    const request = new sql.Request();
+    await request
+      .input('name', sql.VarChar(255), name)
+      .input('price', sql.Decimal(10, 2), price)
+      .input('ImageLink', sql.VarChar(500), ImageLink)
+      .query(`
+        INSERT INTO Top_up (name, price, ImageLink) 
+        VALUES (@name, @price, @ImageLink)
+      `);
+    res.status(201).json({ message: 'Top_up added successfully.' });
+  } catch (error) {
+    console.error('Error adding top_up:', error);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
+// DELETE: Remove a top-up by ID
+router.delete('/:id', async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const request = new sql.Request();
+    const result = await request.input('id', sql.Int, id).query('DELETE FROM Top_up WHERE id = @id');
+
+    if (result.rowsAffected[0] === 0) {
+      return res.status(404).json({ message: 'Top_up not found.' });
+    }
+
+    res.json({ message: 'Top_up deleted successfully.' });
+  } catch (error) {
+    console.error('Error deleting top_up:', error);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
+// PUT: Update a top-up by ID
+router.put('/:id', async (req, res) => {
+  const { id } = req.params;
+  const { name, price, ImageLink } = req.body;
+
+  if (!name || !price || !ImageLink) {
+    return res.status(400).json({ message: 'Name, price, and ImageLink are required.' });
+  }
+
+  try {
+    const request = new sql.Request();
+    const result = await request
+      .input('id', sql.Int, id)
+      .input('name', sql.VarChar(255), name)
+      .input('price', sql.Decimal(10, 2), price)
+      .input('ImageLink', sql.VarChar(500), ImageLink)
+      .query(`
+        UPDATE Top_up 
+        SET name = @name, price = @price, ImageLink = @ImageLink 
+        WHERE id = @id
+      `);
+
+    if (result.rowsAffected[0] === 0) {
+      return res.status(404).json({ message: 'Top_up not found.' });
+    }
+
+    res.json({ message: 'Top_up updated successfully.' });
+  } catch (error) {
+    console.error('Error updating top_up:', error);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
 
 module.exports = router;
