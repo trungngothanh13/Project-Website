@@ -78,6 +78,9 @@ app.use('/api/orderedItems', getOrderedItemsRoutes);
 const adminOrderControlRoutes = require('./routes/adminOrderControlRoutes');
 app.use('/api/adminOrderControl', adminOrderControlRoutes);
 
+// Import and use the customer management routes
+const manageCustomersRoutes = require('./routes/manageCustomerRoutes');
+app.use('/api/manageCustomer', manageCustomersRoutes);
 
 const server = app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
